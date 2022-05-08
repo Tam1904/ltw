@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Blog</title>
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <!-- https://fonts.google.com/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/templatemo-xtra-blog.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <!--
+    
+TemplateMo 553 Xtra Blog
+
+https://templatemo.com/tm-553-xtra-blog
+
+-->
+</head>
+
+<body>
+    <div class="editEmployeeModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit User</h4>
+                        <button type='submit' class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                </div>
+                <form action="Load" method="post">
+                    <div class="modal-body">
+                        <div class="form-column-2">
+
+                            <div class="form-group" style="width: 49%;">
+                                <label class="label">Họ và Tên</label>
+                                <input id="name" value="Nguyễn Văn An" name="name" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group" style="width: 49%;">
+                                <label class="label">Tên tài khoản</label>
+                                <input id="username" value="An Nguyễn" name="price" type="text" class="form-control" required>
+                            </div>
+                        </div>
+
+
+                        <div class="form-column-2">
+
+                            <div class="form-group" style="width: 49%;">
+                                <label class="label">Mật khẩu</label>
+                                <input id="password" value="123456789" name="color" type="text" class="form-control">
+                            </div>
+                            <div class="form-group" style="width: 49%;">
+                                <label class="label">Email</label>
+                                <input id="email" value="annguyen2001@gmail.com" name="range_size" type="text" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-column-2">
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="label">Giới thiệu</label>
+                            <textarea id="gioithieu" name="description" class="form-control" required readonly rows='3'> Tòa B2 Học viện Bưu chính Viễn Thông, Phường Mỗ Lao, Quận Hà Đông , Tỉnh Hà Nội </textarea>
+                        </div>
+                        <div class="form-group" style="margin-top: 5px;">
+                            <label class="label">Role</label>
+                            <select name="category" class="form-select" aria-label="Default select example" style="width: 30%;">
+                                <option value="1">Quản lý</option>
+                                <option value="2">Người dùng</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type='submit' class="btn-product" value="Edit">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div style="display: flex; margin-bottom:10px;justify-content: space-between;">
+                <div class="tm-site-header">
+                    <!-- <div class="mb-3 mx-auto tm-site-logo">
+                        <i class="fas fa-times fa-2x"></i>
+                    </div> -->
+                    <h1 class="text-center">Web Blog Online</h1>
+                </div>
+                <div class="tm-site-header">
+                    <h2 class="text-center">Đăng ký</h2>
+                    <h2 class="text-center">Đăng nhập</h2>
+                </div>
+            </div>
+            <nav class="tm-nav" id="tm-nav">
+                <ul style="display: flex;">
+                    <li class="tm-nav-item active">
+                        <a href="index.html" class="tm-nav-link">
+                            <i class="fas fa-home"></i>Home
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a href="post.html" class="tm-nav-link">
+                            <i class="fas fa-pen"></i> Single Post
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a href="about.html" class="tm-nav-link">
+                            <i class="fas fa-users"></i> About Xtra
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a href="contact.html" class="tm-nav-link">
+                            <i class="far fa-comments"></i> Contact Us
+                        </a>
+                    </li>
+                </ul>
+                <div>
+                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">
+                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+                        <button class="tm-search-button" type="submit">
+                            <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container ">
+        <div class="modal_black ">
+        </div>
+
+        <div class="grid ">
+            <div class="grid__row ">
+                <div class="wrapper ">
+                    <div id="page-wrapper ">
+                        <div id="page-inner ">
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <h1 class="cart-heading ">QUẢN LÝ BLOG</h1>
+                                </div>
+                            </div>
+
+
+                            <div class="row ">
+                                <div class="col-md-12 ">
+
+                                    <div class="panel panel-default ">
+                                        <div class="panel-heading ">Danh sách Post</div>
+                                        <div class="panel-body ">
+                                            <div class="table-responsive ">
+                                                <table class="cart-table ">
+                                                    <thead class="cart-table-head ">
+                                                        <th style="width: 18%;padding-left: 10px; ">Họ và Tên</th>
+                                                        <th style="width: 17%;padding-left: 10px; ">Ngày đăng</th>
+                                                        <th style="width: 40%; padding-left: 10px; ">Tiêu đề</th>
+                                                        <th style="width: 25%; padding-left: 10px; ">Action</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="cart-table-tr ">
+                                                            <td class="cart-table-td ">
+                                                                <div class="cart-product-price-nth ">
+                                                                    <span class="cart-product-price-nth-link " style="width: 25%; ">Họ và Tên:</span>
+                                                                    <div class="cart-product-price ">
+                                                                        Nguyễn Văn An
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="cart-table-td ">
+                                                                <div class="cart-product-price-nth ">
+                                                                    <span class="cart-product-price-nth-link " style="width: 25%; ">Ngày đăng:</span>
+                                                                    <div class="cart-product-price ">
+                                                                        12-04-2022
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td class="cart-table-td ">
+                                                                <div class="cart-product-price-nth ">
+                                                                    <span class="cart-product-price-nth-link ">Tiêu đề:</span>
+                                                                    <div class="cart-product-price ">
+                                                                        Học viện Bưu chính Viễn Thông, Phường Mỗ Lao, Quận Hà Đông , Tỉnh Hà Nội
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+
+                                                            <td>
+                                                                <div class="th-td ">
+                                                                    <form action="Delete " method="post ">
+                                                                        <button class="btn-order " onclick="Cancel(this) ">Xóa post</button>
+                                                                        <input style="display: none " type="text " value="${o.id_trans} " name="deleteTrans "></input>
+                                                                    </form>
+                                                                    <form action="Delete " method="post ">
+                                                                        <button class="btn-order ">Duyệt post</button>
+                                                                        <input style="display: none " type="text " value="${o.id_trans} " name="deleteTrans "></input>
+                                                                    </form>
+                                                                    <form action="MyOrderDetail " method="post ">
+                                                                        <button class="btn-order " type="submit ">Chi Tiết</button>
+                                                                        <input style="display: none " type="text " value="${o.id_trans} " name="id_trans "></input>
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td colspan="6 " style="text-align: end; border-bottom: 2px solid var(--border-color); ">
+                                                                <div class="cart-button-update-nth ">
+                                                                    <button class="cart-buttton-update ">Trở về</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="row tm-row" style="background-color: var(--primary-color);padding: 30px 40px;color: white;">
+        <div class="col-md-6 col-12 tm-color-gray tm-copyright" style="max-width: none; flex: none;">
+            Copyright 2020 Xtra Blog Company Co. Ltd.
+        </div>
+    </footer>
+    <script src="./index.js"></script>
+    <script>
+        manager('.cart-heading-button', 'Add User', 'Edit User')
+    </script>
+    <!-- <script src="js/templatemo-script.js"></script> -->
+</body>
+
+</html>

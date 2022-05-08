@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng bài</title>
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <!-- https://fonts.google.com/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/templatemo-xtra-blog.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <!--
+    
+TemplateMo 553 Xtra Blog
+
+https://templatemo.com/tm-553-xtra-blog
+
+-->
+</head>
+
+<body>
+    <header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div style="display: flex; margin-bottom:10px;justify-content: space-between;">
+                <div class="tm-site-header">
+                    <!-- <div class="mb-3 mx-auto tm-site-logo">
+                        <i class="fas fa-times fa-2x"></i>
+                    </div> -->
+                    <h1 class="text-center">Web Blog Online</h1>
+                </div>
+                <div class="tm-site-header">
+                    <h2 class="text-center">Đăng ký</h2>
+                    <h2 class="text-center">Đăng nhập</h2>
+                </div>
+            </div>
+            <nav class="tm-nav" id="tm-nav">
+                <ul style="display: flex;">
+                    <li class="tm-nav-item active">
+                        <a href="index.html" class="tm-nav-link">
+                            <i class="fas fa-home"></i>Home
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a href="post.html" class="tm-nav-link">
+                            <i class="fas fa-pen"></i> Single Post
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a href="about.html" class="tm-nav-link">
+                            <i class="fas fa-users"></i> About Xtra
+                        </a>
+                    </li>
+                    <li class="tm-nav-item">
+                        <a href="contact.html" class="tm-nav-link">
+                            <i class="far fa-comments"></i> Contact Us
+                        </a>
+                    </li>
+                </ul>
+                <div>
+                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">
+                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+                        <button class="tm-search-button" type="submit">
+                            <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container ">
+
+        <div class="grid " style="padding-top: 20px; ">
+            <div class="grid__row ">
+                <div class="wrapper ">
+                    <div id="page-wrapper ">
+                        <div id="page-inner ">
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <h1 class="cart-heading ">ĐĂNG BÀI</h1>
+                                </div>
+                            </div>
+
+
+                            <div class="row ">
+                                <div class="col-md-12 ">
+
+                                    <div class="panel panel-default ">
+                                        <div class="modal-dialog " style="width: 100%; ">
+                                            <div class="modal-content " style="box-shadow: none; border: none; ">
+                                                <div>
+                                                    <div class="modal-header ">
+                                                        <h4 class="modal-title ">Post</h4>
+                                                    </div>
+                                                </div>
+                                                <form action="Load " method="post ">
+                                                    <div class="modal-body ">
+                                                        <div class="form-column-2 ">
+
+                                                            <div class="form-group " style="width: 49%; ">
+                                                                <label class="label ">Tiêu đề:</label>
+                                                                <input value="" name="id " type="text " class="form-control " required>
+                                                            </div>
+                                                            <div class="form-group " style="width: 49%; ">
+                                                                <label class="label ">Hình ảnh minh họa:</label>
+                                                                <input value="" name="name " type="text " class="form-control " required>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <!-- <div class="form-column-2 ">
+
+                                                            <div class="form-group " style="width: 49%; ">
+                                                                <label class="label ">Mật khẩu:</label>
+                                                                <input value="0987.654.321 " name="range_size " type="text " class="form-control ">
+                                                            </div>
+                                                            <div class="form-group " style="width: 49%; ">
+                                                                <label class="label ">Email:</label>
+                                                                <input value="annguyen2001@gmail.com " name="range_size " type="text " class="form-control ">
+                                                            </div>
+                                                        </div> -->
+                                                        <div class="form-group ">
+                                                            <label class="label ">Nội dung:</label>
+                                                            <textarea name="description " class="form-control " required rows='3'> </textarea>
+                                                        </div>
+
+                                                        <div class="form-group ">
+                                                            <label class="label ">Category</label>
+                                                            <select name="category " class="form-select " aria-label="Default select example " style="width: 20% ;">
+                                                                <option value="1">Kinh tế</option>
+                                                                <option value="2">Xã hội</option>
+                                                                <option value="3">Đời sống</option>
+                                                            </select>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="modal-footer ">
+                                                        <input type='submit' class="btn-product " value="Post">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <footer class="row tm-row" style="background-color: var(--primary-color);padding: 30px 40px;color: white;">
+        <div class="col-md-6 col-12 tm-color-gray tm-copyright" style="max-width: none; flex: none;">
+            Copyright 2020 Xtra Blog Company Co. Ltd.
+        </div>
+    </footer>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/templatemo-script.js"></script>
+</body>
+
+</html>
