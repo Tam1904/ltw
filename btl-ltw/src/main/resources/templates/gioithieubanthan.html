@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TRANG CHỦ</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/main.css}" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link th:href="@{/templatemo-xtra-blog.css}" rel="stylesheet">
+</head>
+
+<body>
+	<th:block th:include="@{/header.html}"></th:block>
+	<div class="container">
+		<div class="row tm-row">
+			<div class="col-12">
+				<hr class="tm-hr-primary  tm-mb-55">
+			</div>
+			<div class="tm-person-col" style="max-width: none;">
+				<div class="media tm-person" style="max-width: none;">
+					<img th:src="${user.anh}" alt="Image" class="img-fluid mr-4">
+					<div class="media-body">
+						<h2 class="tm-color-primary tm-post-title mb-2" th:text="${user.ten}"></h2>
+						<h3 class="tm-h3 mb-3" th:text="${user.username}"></h3>
+						<p class="mb-0 tm-line-height-short" th:text="${user.gioithieu}">
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="grid ">
+			<div class="grid__row ">
+				<div class="wrapper ">
+					<div id="page-wrapper ">
+						<div id="page-inner ">
+							<div class="row ">
+								<h1 class="cart-heading ">Các bài Post</h1>
+							</div>
+
+
+							<div class="row ">
+								<div style="width:100%;">
+
+									<div class="cart-detail">
+										<table class="cart-table">
+											<thead class="cart-table-head">
+												<th style="width: 15%; padding-left: 10px;">Thể loại</th>
+												<th style="width: 10%; padding-left: 10px;">Hình ảnh</th>
+												<th style="width: 27%; padding-left: 10px;">Tiêu đề</th>
+												<th style="width: 12%;padding-left: 10px;">Ngày đăng</th>
+												<th id="type" style="width: 12%; padding-left: 10px;">Lượt xem</th>
+												<th id="type" style="width: 12%; padding-left: 10px;">Lượt like</th>
+												<th id="type" style="width: 12%; padding-left: 10px;">Bình luận</th>
+											</thead>
+											<tbody>
+												<th:block th:each="post: ${posts}">
+
+													<tr class="cart-table-tr"
+														style="min-height: 70px; line-height: 1.2rem;">
+														<td>
+															<div class="cart-product">
+																<div class="cart-product-link">
+																	<span class="cart-product-link-name"
+																		style="color:var(--black-color)">Thể
+																		loại:</span>
+																	<span id="name" class="cart-product-name"
+																		style="color:var(--black-color)"
+																		th:text="${post.linhvuc}"></span>
+																</div>
+															</div>
+														</td>
+
+														<td class="cart-table-td-img">
+															<div class="cart-product-img">
+																<img th:src="${post.anh}" style="width: 60px; ">
+															</div>
+														</td>
+
+														<td class="cart-table-td">
+															<div class="cart-product">
+																<div class="cart-product-link">
+																	<span class="cart-product-link-name"
+																		style="color:var(--black-color)">Tiêu đề:</span>
+																	<span id="username" class="cart-product-name"
+																		style="color:var(--black-color)"
+																		th:text="${post.tieude}"></span>
+																</div>
+															</div>
+														</td>
+														<td>
+															<div class="cart-product">
+																<div class="cart-product-link">
+																	<span class="cart-product-link-name"
+																		style="color:var(--black-color)">Ngày
+																		đăng:</span>
+																	<span id="password" class="cart-product-name"
+																		style="color:var(--black-color)"
+																		th:text="${post.date}"></span>
+																</div>
+															</div>
+														</td>
+														<td>
+															<div class="cart-product-price-nth">
+																<span id="type" class="cart-product-price-nth-link">Lượt
+																	xem:</span>
+																<div id="email" class="cart-product-price"
+																	th:text="${post.luotxem}">
+																</div>
+															</div>
+														</td>
+														<td>
+															<div class="cart-product-price-nth">
+																<span id="type" class="cart-product-price-nth-link">Lượt
+																	like:</span>
+																<div id="email" class="cart-product-price"
+																	th:text="${post.luotthich}">
+																</div>
+															</div>
+														</td>
+														<td>
+															<div class="cart-product-price-nth">
+																<span id="type" class="cart-product-price-nth-link">Bình
+																	luận:</span>
+																<div id="email" class="cart-product-price"
+																	th:text="${post.binhluan}">
+																</div>
+															</div>
+														</td>
+													</tr>
+												</th:block>
+
+												<tr class="row-last">
+													<td colspan="8"
+														style="text-align:unset; border-bottom: 2px solid var(--border-color);">
+														<ul class="pag-list "
+															style="justify-content: center; margin-top:15px">
+
+
+															<li class="pag-list-item ">
+																<a th:href="@{|/account/detail/${user.id}/page/${current-1}|}"
+																	class="pag-item__link ">
+																	<i class="pag__link-icon fas fa-angle-left "></i>
+																</a>
+															</li>
+															<th:block th:each="item : ${#numbers.sequence(begin,end)}">
+																<th:block th:if="${current == item}">
+																	<li class="pag-list-item ">
+																		<a th:href="@{|/account/detail/${user.id}/page/${item}|}"
+																			class="pag-item__link pag-item__link-active"
+																			th:text="${item}"></a>
+																	</li>
+																</th:block>
+																<th:block th:unless="${current == item}">
+																	<li class="pag-list-item ">
+																		<a th:href="@{|/account/detail/${user.id}/page/${item}|}"
+																			class="pag-item__link"
+																			th:text="${item}"></a>
+																	</li>
+																</th:block>
+															</th:block>
+															<li class="pag-list-item ">
+																<a th:href="@{|/account/detail/${user.id}/page/${current+1}|}"
+																	class="pag-item__link ">
+																	<i class="pag__link-icon fas fa-angle-right "></i>
+																</a>
+															</li>
+
+														</ul>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<th:block th:include="@{/footer.html}"></th:block>
+</body>
+
+</html>

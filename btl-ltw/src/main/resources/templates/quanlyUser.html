@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TRANG CHỦ</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/main.css}" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link th:href="@{/templatemo-xtra-blog.css}" rel="stylesheet">
+</head>
+
+<body>
+	<th:block th:include="@{/userform.html}"></th:block>
+	<th:block th:include="@{/header.html}"></th:block>
+	<div class="container">
+		<div class="modal_black">
+		</div>
+
+		<div class="grid">
+			<div class="grid__row">
+				<div class="cart" style="min-height: 450px;">
+					<h1 class="cart-heading">QUẢN LÝ NGƯỜI DÙNG</h1>
+
+					<div class="cart-heading-button">
+						<button class="button-item"
+							style="background-color: var(--primary-color); color: var(--while-color);"> Thêm người dùng
+						</button>
+						<button class="button-item"
+							style="background-color: var(--primary-color); color: var(--while-color);">Sửa thông
+							tin</button>
+						<button class="button-item"
+							style="background-color: var(--primary-color); color: var(--while-color);">Xóa tài
+							khoản</button>
+					</div>
+
+					<h1 id="search" class="cart-heading" style="display: none;padding-bottom: 5px;">Danh sách người dùng
+					</h1>
+
+					<div class="cart-detail" style="display: none;">
+						<table class="cart-table">
+							<thead class="cart-table-head">
+								<th style="width: 7%;"></th>
+								<th style="width: 17%; padding-left: 10px;">Họ và tên</th>
+								<th style="width: 18%;padding-left: 10px;">Tên tài khoản</th>
+								<th style="width: 17%; padding-left: 10px;">Mật khẩu</th>
+								<th style="width: 25%; padding-left: 10px;">Email</th>
+								<th style="width: 17%; padding-left: 10px;">Phân quyền</th>
+							</thead>
+							<tbody>
+								<th:block th:each="user : ${users}">
+
+									<tr class="cart-table-tr" style="min-height: 70px;">
+										<td class="cart-table-td">
+											<div class="cart-icon">
+												<i id="icon" class='fas fa-highlighter edit'
+													onclick="chooseUser(this)"></i>
+												<input type='checkbox' class="checkbox" th:value="${user.id}">
+											</div>
+										</td>
+										<td>
+											<div class="cart-product">
+												<div class="cart-product-link">
+													<span class="cart-product-link-name"
+														style="color:var(--black-color)">Họ
+														và tên:</span>
+													<span id="ten" class="cart-product-name"
+														style="color:var(--black-color)" th:text="${user.ten}"></span>
+													<span id="gioithieu" class=" cart-product-name"
+														style="color:var(--black-color);display: none;"
+														th:text="${user.gioithieu}"></span>
+													<span id="id" class=" cart-product-name"
+														style="color:var(--black-color);display: none;"
+														th:text="${user.id}"></span>
+													<span id="anh" class=" cart-product-name"
+														style="color:var(--black-color);display: none;"
+														th:text="${user.anh}"></span>
+												</div>
+											</div>
+										</td>
+
+										<td class="cart-table-td">
+											<div class="cart-product">
+												<div class="cart-product-link">
+													<span class="cart-product-link-name"
+														style="color:var(--black-color)">Tên tài khoản:</span>
+													<span id="username" class="cart-product-name"
+														style="color:var(--black-color)" th:text="${user.username}"></span>
+												</div>
+											</div>
+										</td>
+										<td>
+											<div class="cart-product">
+												<div class="cart-product-link">
+													<span class="cart-product-link-name"
+														style="color:var(--black-color)">Mật khẩu:</span>
+													<span id="password" class="cart-product-name"
+														style="color:var(--black-color)"
+														th:text="${user.password}"></span>
+												</div>
+											</div>
+										</td>
+										<td>
+											<div class="cart-product-price-nth">
+												<span class="cart-product-price-nth-link">Email:</span>
+												<div id="email" class="cart-product-price" th:text="${user.email}">
+												</div>
+											</div>
+										</td>
+										<td>
+											<div class="cart-product-price-nth">
+												<span class="cart-product-price-nth-link">Phân quyền:</span>
+												<div id="phanquyen" class="cart-product-price"
+													th:text="${user.phanquyen}">
+												</div>
+											</div>
+										</td>
+									</tr>
+								</th:block>
+
+							</tbody>
+							<tfoot>
+								<tr class="row-last">
+									<td colspan="6"
+										style="text-align:unset; border-bottom: 2px solid var(--border-color);">
+										<div class="cart-button-update-nth"
+											style="display: flex;justify-content: space-evenly;">
+											<button class="cart-buttton-update" th:onclick="typed()">Hủy</button>
+										</div>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<th:block th:include="@{/footer.html}"></th:block>
+	<script th:src="@{/index.js}"></script>
+	<script>
+		function chooseUser(event) {
+
+			function getParent(element, selector) {
+				while (element.parentElement) {
+					if (element.parentElement.matches(selector)) {
+						return element.parentElement;
+					}
+					element = element.parentElement;
+				}
+			}
+
+			document.querySelector(".editEmployeeModal").style.display = 'block';
+			var parent = getParent(event, '.cart-table-tr');
+			var form = document.querySelector("#formUser");
+			form.querySelector("#id").value = parent.querySelector("#id").innerHTML.trim();
+			form.querySelector("#ten").value = parent.querySelector("#ten").innerHTML.trim();
+			form.querySelector("#username").value = parent.querySelector("#username").innerHTML.trim();
+			form.querySelector("#password").value = parent.querySelector("#password").innerHTML.trim();
+			form.querySelector("#anh").value = parent.querySelector("#anh").innerHTML.trim();
+			form.querySelector("#phanquyen").value = parent.querySelector("#phanquyen").innerHTML.trim();
+			form.querySelector("#gioithieu").value = parent.querySelector("#gioithieu").innerHTML.trim();
+			form.querySelector("#email").value = parent.querySelector("#email").innerHTML.trim();
+		}
+
+
+		function solve() {
+			var form = document.querySelector("#formUser");
+			var action = form.querySelector("#submit").value;
+			if (validate() == true) {
+
+				if (action === "Add") {
+					check();
+				}
+				else {
+					add()
+				}
+			}
+			else {
+				alert("Nhập chính xác thông tin");
+			}
+		}
+		function check() {
+			var form = document.querySelector("#formUser");
+			var username = form.querySelector("#username").value;
+			var s;
+			$.ajax({
+				type: "GET",
+				url: "http://localhost:8080/managerUser/checkUser",
+				data: {
+					username: username
+				},
+				success: function (data) {
+					form.querySelector(".message").innerHTML = data;
+					s = data;
+					if (s === "") {
+						add();
+					}
+				}
+			});
+		}
+		function validate() {
+			var form = document.querySelector("#formUser");
+			var ten = form.querySelector("#ten").value;
+			var username = form.querySelector("#username").value;
+			var password = form.querySelector("#password").value;
+			var email = form.querySelector("#email").value;
+			var phanquyen = form.querySelector("#phanquyen").value;
+			if (ten == "") {
+				return false;
+			}
+
+			if (username == "") {
+				return false;
+			}
+			if (password == "") {
+				return false;
+			}
+
+			const reg = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/g
+			if (!reg.test(email)) {
+				return false;
+			}
+
+			if (phanquyen == "") {
+				return false;
+			}
+			return true;
+		}
+		function add() {
+			var form = document.querySelector("#formUser");
+			var id = form.querySelector("#id").value;
+			var ten = form.querySelector("#ten").value;
+			var username = form.querySelector("#username").value;
+			var password = form.querySelector("#password").value;
+			var anh = form.querySelector("#anh").value;
+			var email = form.querySelector("#email").value;
+			var gioithieu = form.querySelector("#gioithieu").value;
+			var phanquyen = form.querySelector("#phanquyen").value;
+			var action = form.querySelector("#submit").value;
+			$.ajax({
+				type: "post",
+				url: "http://localhost:8080/managerUser/updateUser",
+				data: {
+					id: id,
+					ten: ten,
+					username: username,
+					password: password,
+					anh: anh,
+					email: email,
+					gioithieu: gioithieu,
+					phanquyen: phanquyen,
+					action: action
+				},
+				success: function () {
+					if (action === "Add") {
+						alert("Thêm người dùng thành công");
+						remove(".editEmployeeModal");
+						var list = document.querySelectorAll('.button-item');
+						for (var item of list) {
+							item.style.backgroundColor = 'var(--primary-color)';
+						}
+						autoSearch();
+					}
+					else {
+						alert("Cập nhật người dùng thành công");
+						remove(".editEmployeeModal");
+						autoSearch();
+					}
+				}
+			});
+		}
+
+		function typed() {
+			var listButton = document.querySelector('.cart-buttton-update').innerHTML;
+			console.log(listButton)
+			if (listButton == "Hoàn tất") {
+				document.getElementById("search").style.display = 'none';
+				document.querySelector('.cart-detail').style.display = 'none';
+				var list = document.querySelectorAll('.button-item');
+				for (var item of list) {
+					item.style.backgroundColor = 'var(--primary-color)';
+				}
+			}
+			else {
+				var listBox = document.querySelectorAll(".checkbox");
+				var s = "";
+				for (var box of listBox) {
+					if (box.checked == true) {
+						s += box.value + " ";
+					}
+				}
+						console.log(s + "11111111111")
+				if (s != "") {
+
+					if (confirm("Bạn muốn xóa người dùng") == true) {
+
+						$.ajax({
+							type: "delete",
+							url: "http://localhost:8080/managerUser/deleteUser",
+							data: {
+								listma: s
+							},
+							success: function () {
+								alert("Xóa thành công");
+								autoSearch();
+								document.getElementById("search").style.display = 'none';
+								document.querySelector('.cart-detail').style.display = 'none';
+								var list = document.querySelectorAll('.button-item');
+								for (var item of list) {
+									item.style.backgroundColor = 'var(--primary-color)';
+								}
+							}
+						});
+					}
+				}
+				else {
+
+					/*document.getElementById("search").style.display = 'none';
+					document.querySelector('.cart-detail').style.display = 'none';*/
+					var list = document.querySelectorAll('.button-item');
+					for (var item of list) {
+						item.style.backgroundColor = 'var(--primary-color)';
+					}
+				}
+			}
+		}
+
+		function autoSearch() {
+			var s = "";
+			s = document.querySelector(".header__seach-input").value;
+			document.getElementById("search").innerHTML = "Danh sách người dùng" + s + "";
+			var typed = document.querySelector(".cart-buttton-update").innerHTML;
+			$.ajax({
+				type: "get",
+				url: "http://localhost:8080/managerUser/autosearchUser",
+				data: {
+					text: s,
+					typed: typed
+				},
+				dataType: "html",
+				success: function (data) {
+					document.querySelector("tbody").innerHTML = data
+				}
+
+			});
+		}
+		manager('.cart-heading-button', 'Add User', 'Edit User')
+	</script>
+	<!-- <script src="js/templatemo-script.js"></script> -->
+</body>
+
+</html>

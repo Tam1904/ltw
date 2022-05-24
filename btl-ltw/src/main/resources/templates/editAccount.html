@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TRANG CHỦ</title>
+	<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css}">
+	<link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/main.css}" rel="stylesheet">
+	<link th:href="@{/templatemo-xtra-blog.css}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+</head>
+
+<body>
+	<th:block th:include="@{/header.html}"></th:block>
+	<div class="container">
+
+		<div class="grid" style="padding-top: 20px;">
+			<div class="grid__row">
+				<div class="wrapper">
+					<div id="page-wrapper">
+						<div id="page-inner">
+							<div class="row">
+								<div class="col-md-12">
+									<h1 class="cart-heading">TÀI KHOẢN CỦA BẠN</h1>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-md-12">
+
+									<div class="panel panel-default">
+										<div class="modal-dialog" style="width: 100%;">
+											<div class="modal-content" style="box-shadow: none; border: none;">
+												<div>
+													<div class="modal-header">
+														<h4 class="modal-title">Edit Account</h4>
+													</div>
+												</div>
+												<form th:action="@{/account}" th:object="${user}" method="post">
+													<div class="modal-body">
+														<div class="form-column-2">
+
+															<div class="form-group" style="width: 49%;">
+																<label class="label">Họ và Tên:</label>
+																<input th:value="${session.user.id}" name="id" type="hidden" class="form-control" required>
+																<input th:value="${session.user.phanquyen}" name="phanquyen" type="hidden" class="form-control" required>
+																<input th:value="${session.user.ten}" name="ten" type="text" class="form-control" required>
+															</div>
+															<div class="form-group" style="width: 49%;">
+																<label class="label">Tên tài khoản:</label>
+																<input th:value="${session.user.username}" name="username" type="text"
+																	class="form-control" required>
+															</div>
+														</div>
+
+
+														<div class="form-column-2">
+
+															<div class="form-group" style="width: 49%;">
+																<label class="label">Mật khẩu:</label>
+																<input th:value="${session.user.password}" name="password"
+																	type="password" class="form-control">
+															</div>
+															<div class="form-group" style="width: 49%;">
+																<label class="label">Xác nhận mật khẩu:</label>
+																<span th:if="${message!=null}" th:text="${message}" style="color: red; font-size: 1rem;"></span>
+																<input name="xacnhan" type="password" class="form-control" required>
+															</div>
+														</div>
+														<div class="form-column-2">
+
+															<div class="form-group" style="width: 49%;">
+																<label class="label">Ảnh đại diện:</label>
+																<input th:value="${session.user.anh}" name="anh"
+																	type="file" class="form-control" required>
+															</div>
+															<div class="form-group" style="width: 49%;">
+																<label class="label">Email:</label>
+																<input th:value="${session.user.email}" name="email"
+																	type="text" class="form-control">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="label">Giới thiệu:</label>
+															<textarea name="gioithieu" class="form-control" required
+																rows='3' th:text="${session.user.gioithieu}"></textarea>
+														</div>
+
+
+													</div>
+													<div class="modal-footer">
+														<input type='submit' class="btn-product" value="Save">
+														<input type='reset' class="btn-product" value="Reset">
+													
+													</div>
+												</form>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<th:block th:include="@{/footer.html}"></th:block>
+	<script th:src="@{/index.js}"></script>
+</body>
+
+</html>

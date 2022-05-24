@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TRANG CHỦ</title>
+	<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css}">
+	<link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/main.css}" rel="stylesheet">
+	<link th:href="@{/templatemo-xtra-blog.css}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+</head>
+
+<body>
+	<th:block th:include="@{/header.html}"></th:block>
+	<div class="container ">
+
+		<div class="grid " style="padding-top: 20px; ">
+			<div class="grid__row ">
+				<div class="wrapper ">
+					<div id="page-wrapper ">
+						<div id="page-inner ">
+							<div class="row ">
+								<div class="col-md-12 ">
+									<h1 class="cart-heading ">ĐĂNG BÀI</h1>
+								</div>
+							</div>
+
+
+							<div class="row ">
+								<div class="col-md-12 ">
+
+									<div class="panel panel-default ">
+										<div class="modal-dialog " style="width: 100%; ">
+											<div class="modal-content " style="box-shadow: none; border: none; ">
+												<div>
+													<div class="modal-header ">
+														<h4 class="modal-title ">Post</h4>
+													</div>
+												</div>
+												<form th:action="@{/blog/post}" method="post" th:object="${post}">
+													<div class="modal-body ">
+														<div class="form-column-2 ">
+
+															<div class="form-group " style="width: 49%; ">
+																<label class="label ">Tiêu đề:</label>
+																<input value="" name="tieude" type="text "
+																	class="form-control " required>
+															</div>
+															<div class="form-group " style="width: 49%; ">
+																<label class="label ">Video minh họa:</label>
+																<input value="" name="video" type="file"
+																	class="form-control " required>
+															</div>
+														</div>
+														
+														<div class="form-group ">
+															<label class="label ">Hình ảnh minh họa:</label>
+															<input value="" name="anh" type="file" class="form-control" required>
+														</div>
+
+														<div class="form-group ">
+															<label class="label ">Nội dung:</label>
+															<textarea name="noidung" class="form-control" required rows='3' placeholder="Nội dung bài post" > </textarea>
+														</div>
+
+														<div class="form-group ">
+															<label class="label ">Thể loại</label>
+															<select name="linhvuc" class="form-select "
+																aria-label="Default select example "
+																style="width: 20% ; margin-top: 10px;">
+																<option value="Món Ngon Việt Nam">Món Ngon Việt Nam</option>
+																<option value="Món Ngon Châu Âu">Món Ngon Châu Âu</option>
+																<option value="Món Ngon Châu Á">Món Ngon Châu Á</option>
+																<option value="Món Ngon Đặc Sản">Món Ngon Đặc Sản</option>
+																<option value="Món Ngon Dễ Làm">Món Ngon Dễ Làm</option>
+															</select>
+														</div>
+
+
+													</div>
+													<div class="modal-footer ">
+														<input type='submit' class="btn-product " value="Post">
+													</div>
+												</form>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<th:block th:include="@{/footer.html}"></th:block>
+	<script th:src="@{/index.js}"></script>
+</body>
+
+</html>

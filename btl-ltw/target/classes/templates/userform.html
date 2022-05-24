@@ -1,0 +1,68 @@
+<!--style="position: fixed;"-->
+<div class="editEmployeeModal" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div>
+				<div class="modal-header">
+					<h4 class="modal-title">Edit User</h4>
+					<button type='submit' class="close" data-dismiss="modal" aria-hidden="true" th:onclick= "xoa()">&times;</button>
+				</div>
+			</div>
+			<div id="formUser" th:action="@{/managerUser/updateUser}" th:object="${user}" method="post">
+				<div class="modal-body">
+					<div class="form-column-2">
+						<div class="form-group" style="width: 49%;">
+							<label class="label">Họ và Tên</label>
+							<input id="ten" value="" name="ten" type="text" class="form-control"
+								required>
+							<input id="id" value="" name="id" type="hidden" class="form-control">
+							<input id="anh" value="" name="anh" type="hidden" class="form-control">
+						</div>
+						<div class="form-group" style="width: 49%;">
+							<label class="label">Tên tài khoản</label>
+							<span th:text="${mess}" id="message" class="message" style="color: red;"> </span>
+							<input id="username" value="" name="username" type="text" class="form-control"
+								required>
+						</div>
+					</div>
+
+
+					<div class="form-column-2">
+
+						<div class="form-group" style="width: 49%;">
+							<label class="label">Mật khẩu</label>
+							<input id="password" value="" name="password" type="text" class="form-control">
+						</div>
+						<div class="form-group" style="width: 49%;">
+							<label class="label">Email</label>
+							<input id="email" value="" name="email" type="email"
+								class="form-control">
+						</div>
+					</div>
+
+					<div class="form-column-2">
+
+
+					</div>
+
+					<div class="form-group">
+						<label class="label">Giới thiệu</label>
+						<textarea id="gioithieu" name="gioithieu" class="form-control" required  rows='3'></textarea>
+					</div>
+					<div class="form-group" style="margin-top: 5px;">
+						<label class="label">Role</label>
+						<select id="phanquyen" name="phanquyen" class="form-select" aria-label="Default select example"
+							style="width: 30%;">
+							<!--<option selected hidden >Người dùng</option >-->
+							<option value="Quản lý">Quản lý</option>
+							<option value="Người dùng">Người dùng</option>
+						</select>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input id="submit" name='type' type='submit' class="btn-product" value="Edit" th:onclick="solve()">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

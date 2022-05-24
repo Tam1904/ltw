@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TRANG CHỦ</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/main.css}" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link th:href="@{/templatemo-xtra-blog.css}" rel="stylesheet">
+</head>
+
+<body>
+	<th:block th:include="@{/headerPost.html}"></th:block>
+	<div class="container ">
+		<div class="modal_black ">
+		</div>
+
+		<div class="grid ">
+			<div class="grid__row ">
+				<div class="wrapper ">
+					<div id="page-wrapper ">
+						<div id="page-inner ">
+							<div class="row ">
+								<div class="col-md-12 ">
+									<h1 class="cart-heading ">QUẢN LÝ BLOG</h1>
+								</div>
+							</div>
+
+
+							<div class="row ">
+								<div class="col-md-12 ">
+
+									<div class="panel panel-default">
+										<div class="panel-heading "
+											style="display: flex; justify-content: space-between;">
+											<span style="color: var(--text-color);">Danh sách Post</span>
+											<div style="display: flex;">
+												<form th:action="@{/blog/manager/all}" method="get">
+													<button style="width: 100px; font-size: 1rem;margin-right: 10px;"
+														class="btn-order">Tất cả</button>
+												</form>
+												<form th:action="@{/blog/manager/daduyet}" method="post">
+													<button style="width: 100px; font-size: 1rem;" class="btn-order">Đã
+														duyệt</button>
+												</form>
+												<form th:action="@{/blog/manager/chuaduyet}" method="post">
+													<button style="width: 100px; font-size: 1rem; margin-left: 10px;"
+														class="btn-order">Chưa duyệt</button>
+												</form>
+											</div>
+										</div>
+										<div class="panel-body ">
+											<div class="table-responsive ">
+												<table class="cart-table ">
+													<thead class="cart-table-head ">
+														<th style="width: 15%;padding-left: 10px; ">Tài khoản</th>
+														<th style="width: 15%;padding-left: 10px; ">Ngày đăng</th>
+														<th style="width: 30%; padding-left: 10px; ">Tiêu đề</th>
+														<th style="width: 15%; padding-left: 10px; ">Thể loại</th>
+														<th style="width: 25%; padding-left: 10px; ">Action</th>
+													</thead>
+													<tbody>
+														<th:block th:each="post: ${posts}">
+															<tr class="cart-table-tr ">
+																<td class="cart-table-td ">
+																	<div class="cart-product-price-nth ">
+																		<span class="cart-product-price-nth-link "
+																			style="width: 25%; ">Họ và Tên:</span>
+																		<div class="cart-product-price "
+																			th:text="${post.user.username}">
+																		</div>
+																	</div>
+																</td>
+
+																<td class="cart-table-td ">
+																	<div class="cart-product-price-nth ">
+																		<span class="cart-product-price-nth-link "
+																			style="width: 25%; ">Ngày đăng:</span>
+																		<div class="cart-product-price "
+																			th:text="${post.date}">
+																		</div>
+																	</div>
+																</td>
+																<td class="cart-table-td ">
+																	<div class="cart-product-price-nth ">
+																		<span class="cart-product-price-nth-link ">Tiêu
+																			đề:</span>
+																		<div class="cart-product-price "
+																			th:text="${post.tieude}">
+																		</div>
+																	</div>
+																</td>
+																<td class="cart-table-td ">
+																	<div class="cart-product-price-nth ">
+																		<span class="cart-product-price-nth-link "
+																			style="width: 25%; ">Thể loại:</span>
+																		<div class="cart-product-price "
+																			th:text="${post.linhvuc}">
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<div class="th-td ">
+																		<form th:action="@{|/blog/xoa/${post.id}|}"
+																			method="post">
+																			<button class="btn-order-remove">Xóa
+																				post</button>
+																		</form>
+
+																		<th:block th:if="${post.trangthai==0}">
+																			<form
+																				th:action="@{|/blog/duyet/${post.id}|}"
+																				method="post">
+																				<button class="btn-order ">Duyệt
+																					post</button>
+																			</form>
+																		</th:block>
+																		<form th:action="@{|/blog/detail/${post.id}|}"
+																			method="post">
+																			<button class="btn-order "
+																				type="submit ">Chi
+																				Tiết</button>
+																		</form>
+																	</div>
+																</td>
+															</tr>
+														</th:block>
+
+														<tr>
+															<td colspan="6 "
+																style="text-align: end; border-bottom: 2px solid var(--border-color); ">
+																<ul class="pag-list " style="justify-content: center; margin-top: 15px;">
+
+
+																	<li class="pag-list-item ">
+																		<a th:href="@{|/blog/manager/page/${current-1}|}"
+																			class="pag-item__link ">
+																			<i
+																				class="pag__link-icon fas fa-angle-left "></i>
+																		</a>
+																	</li>
+																	<th:block
+																		th:each="item : ${#numbers.sequence(begin,end)}">
+																		<th:block th:if="${current == item}">
+																			<li class="pag-list-item ">
+																				<a th:href="@{|/blog/manager/page/${item}|}"
+																					class="pag-item__link pag-item__link-active"
+																					th:text="${item}"></a>
+																			</li>
+																		</th:block>
+																		<th:block th:unless="${current == item}">
+																			<li class="pag-list-item ">
+																				<a th:href="@{|/blog/manager/page/${item}|}"
+																					class="pag-item__link"
+																					th:text="${item}"></a>
+																			</li>
+																		</th:block>
+																	</th:block>
+																	<li class="pag-list-item ">
+																		<a th:href="@{|/blog/manager/page/${current+1}|}"
+																			class="pag-item__link ">
+																			<i
+																				class="pag__link-icon fas fa-angle-right "></i>
+																		</a>
+																	</li>
+
+																</ul>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<th:block th:include="@{/footer.html}"></th:block>
+	<script th:src="@{/index.js}"></script>
+	<script>
+		Cancel(".btn-order-remove")
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<header class="header">
+	<div class="grid__full-width">
+
+
+		<div class="header_navar-background">
+
+			<nav class="header__navbar ">
+
+				<span class="header__navbar--item-1">
+					Web Blog Ẩm Thực - Nơi chia sẻ kinh nghiệm
+				</span>
+
+
+				<ul class="header__navbar--list">
+					<li class="header__navbar--item" style="margin-right: 15px;">
+						 Hoạt động 24/7
+					</li>
+					<li th:if="${session.user==null}" class="header__navbar--item"><a href="/signin"
+							style="color: var(--while-color);text-decoration: none;"> Đăng ký</a> </li>
+					<li th:if="${session.user==null}" class="header__navbar--item" style="margin-left: 10px;"><a
+							href="/login" style="color: var(--while-color);text-decoration: none;"> Đăng nhập</a></li>
+					<li th:if="${session.user}" class="header__navbar-item-user">
+						<form class="header__navbar-item-user-name">
+							<span class="header__navbar-item-user-name-Name" th:text="${session.user.username}"></span>
+							<div class="header__navbar-item-user-name-list">
+								<ul class="header__navbar-item-user-name-list1">
+									<li class="header__navbar-item-user-name-list1-item">
+										<a th:href="@{/account}" class="header__navbar-item-user-name-list1-item-link">
+											Tài khoản của tôi
+										</a>
+									</li>
+									<li class="header__navbar-item-user-name-list1-item">
+										<a th:href="@{/logout}" class="header__navbar-item-user-name-list1-item-link">
+											Đăng xuất
+										</a>
+									</li>
+								</ul>
+							</div>
+						</form>
+					</li>
+				</ul>
+
+			</nav>
+		</div>
+		<div class="header-with-seach-background">
+			<div class="header-with-seach">
+				<div class="header__logo">
+					<img src="https://blogamthuc.tv/wp-content/uploads/2021/05/cropped-blog-am-thuc-300x300.png" alt="" class="header__logo-img" style="width:auto;">
+				</div>
+
+
+				<div class="header__seach">
+					<form th:action="@{/searchHome}" method="post" class="header__seach-wrap" id='header-seach'>
+						<input name = "text" type="text" class="header__seach-input" placeholder="Tìm kiếm sản phẩm">
+
+						<div class="header_seach-history">
+							<h3 class="header__seach-history-heading">
+								Sản phẩm
+							</h3>
+							<ul class="header__seach-history-list">
+								<li class="header__seach-history-item">
+									<a class="header__seach-history-item-link"
+										title="Giày Nike Jordan 1 Low - Light Smoke Grey rep 1:1 1:1 1:1">
+
+										<img th:src="@{https://capvirgo.com/wp-content/uploads/2022/03/28482a09-300x300.jpg?v=1646128657}"
+											alt="" class="header__seach-history-item-img">
+										<div class="header__seach-history-item-product">
+											<span class="header__seach-history-item-product-name">
+												Giày Nike Jordan 1 Low - Light Smoke Grey rep 1:1 1:1 1:1
+											</span>
+											<div class="header__seach-history-item-product-price">
+												<span>890.000</span>
+												<span class="header__seach-history-item-product-price-item">đ</span>
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<button class="header__seach-btn">
+							Tìm kiếm
+						</button>
+					</form>
+				</div>
+
+
+
+				<div class="header__logo">
+					<img src="http://www.blogamthuc.com/wp-content/uploads/2014/03/104_pic2.jpg" alt="" class="header__logo-img">
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="header_filter-background">
+
+		<div class="header-filter">
+			<div class="home-filter">
+
+				<div class="home__heading " th:onclick="@{solveCategory()}">
+					<h3 class="home-category "> DANH MỤC </h3>
+					<i class="home__heading-icon fas fa-bars "></i>
+					
+				</div>
+
+				<a th:href="@{/}" class="home-heading-btn ">
+					TRANG CHỦ
+				</a>
+
+				<a th:href="@{/blog/dangpost}" class="home-heading-btn ">
+					ĐĂNG POST
+				</a>
+				
+				<a th:href="@{/blog/manager}" class="home-heading-btn ">
+					QUẢN LÝ POST
+				</a>
+
+				<!--<a th:href="@{/managerOrderCustomer}" class="home-heading-btn ">
+					XEM CÁC ĐƠN HÀNG
+				</a>-->
+
+			
+
+			</div>
+		</div>
+	</div>
+
+
+</header>

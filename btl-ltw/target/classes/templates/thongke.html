@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>TRANG CHỦ</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+		<link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+		<link th:href="@{/main.css}" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link th:href="@{/templatemo-xtra-blog.css}" rel="stylesheet">
+	</head>
+</head>
+
+<body>
+
+	<th:block th:include="@{/headerThongke.html}"></th:block>
+	<div class="container">
+		<div class="modal_black">
+		</div>
+
+		<div class="grid">
+			<div class="grid__row">
+				<div class="cart" style="min-height: 450px;">
+					<h1 class="cart-heading">THỐNG KÊ</h1>
+
+					<div id="button" class="cart-heading-button" style="justify-content: space-evenly;">
+						<form th:action="@{/thongke}" method="get">
+							<button class="button-item"
+								style="background-color: var(--primary-color); color: var(--while-color);"
+								th:styleappend="${session.thongke==2}? 'background-color:cadetblue'">
+								Các post </button>
+						</form>
+						<form th:action="@{/thongke/linhvuc}" method="get">
+							<button class="button-item"
+								style="background-color: var(--primary-color); color: var(--while-color);"
+								th:styleappend="${session.thongke==1}? 'background-color:cadetblue'">
+								Thể loại</button>
+						</form>
+					</div>
+					
+					<div class="category-money" style="width: 30%; margin: 0 auto; display:none" 
+					th:styleappend="${session.thongke==2}? 'display:block'">
+						<span class="category-money-item "> LỌC THỂ LOẠI</span>
+						<form th:action="@{/thongke/loc}" class='category-money-choose' method="post">
+							<input type="hidden" name="index" th:value="${index}">
+							<label for="cars " class='category-money-choose-lable'>CHỌN THỂ LOẠI:</label>
+							<select name="linhvuc" class="category-money-choose-shoes" th:value="${session.linhvuc}">
+								<th:block th:each="linhvucItem : ${session.linhvucs}">
+									<option th:value="${linhvucItem}" th:text="${linhvucItem}"></option>
+								</th:block>
+								<option th:value="${session.linhvuc}" th:text="${session.linhvuc}" selected="selected" hidden>
+								</option>
+							</select>
+							<input type='submit' value="LỌC" class="category-money-choose-submit ">
+						</form>
+					</div>
+					<div style="display: flex; border-bottom: 3px solid var(--primary-color); align-items: center;justify-content: space-between;margin-bottom: 20px;">
+						<th:block th:if="${session.text== null || session.text.isEmpty()}">
+							<h1 id="search" class="cart-heading" style="border-bottom: none; width:auto;padding-bottom: 10px;" >Danh sách Post
+							</h1>
+						</th:block>
+						<th:block th:unless="${session.text== null || session.text.isEmpty()}">
+							<h1 id="search" class="cart-heading" style="border-bottom: none; width:auto;padding-bottom: 10px;"> Kết quả tìm kiếm Post '
+							<th:block th:text="${session.text}"></th:block>'
+							</h1>
+						</th:block>
+						<div style="display:flex;">
+							<form th:action="@{/thongke/new}" method="get">
+								<button class="button-item"
+									style="background-color: var(--primary-color); color: var(--while-color);font-size: 1rem;">
+									Mới nhất </button>
+							</form>
+							<form th:action="@{/thongke/old}" method="get">
+								<button class="button-item"
+									style="background-color: var(--primary-color); color: var(--while-color);font-size:1rem;margin-left: 5px;">
+									Cũ nhất</button>
+							</form>
+						</div>
+					</div>
+
+					<div class="cart-detail" style="display: block;">
+						<table class="cart-table">
+							<thead class="cart-table-head">
+								<th style="width: 13%; padding-left: 10px;">Tài khoản</th>
+								<th style="width: 10%; padding-left: 10px;">Thể loại</th>
+								<th style="width: 10%; padding-left: 10px;">Hình ảnh</th>
+								<th style="width: 27%; padding-left: 10px;">Tiêu đề</th>
+								<th style="width: 12%;padding-left: 10px;">Ngày đăng</th>
+								<th id="type" style="width: 10%; padding-left: 10px;">Lượt xem</th>
+								<th id="type" style="width: 10%; padding-left: 10px;">Lượt like</th>
+								<th id="type" style="width: 8%; padding-left: 10px;">Bình luận</th>
+							</thead>
+							<tbody>
+								<th:block th:each="post: ${posts}">
+
+									<tr class="cart-table-tr" style="min-height: 70px; line-height: 1.2rem;">
+										<td>
+											<div class="cart-product">
+												<div class="cart-product-link">
+													<span class="cart-product-link-name"
+														style="color:var(--black-color)">Tài khoản:</span>
+													<span id="name" class="cart-product-name"
+														style="color:var(--black-color)"
+														th:text="${post.user.username}"></span>
+												</div>
+											</div>
+										</td>
+
+										<td>
+											<div class="cart-product">
+												<div class="cart-product-link">
+													<span class="cart-product-link-name"
+														style="color:var(--black-color)">Thể loại:</span>
+													<span id="name" class="cart-product-name"
+														style="color:var(--black-color)"
+														th:text="${post.linhvuc}"></span>
+												</div>
+											</div>
+										</td>
+
+										<td class="cart-table-td-img">
+											<div class="cart-product-img">
+												<img th:src="${post.anh}" style="width: 60px; ">
+											</div>
+										</td>
+
+										<td class="cart-table-td">
+											<div class="cart-product">
+												<div class="cart-product-link">
+													<span class="cart-product-link-name"
+														style="color:var(--black-color)">Tiêu đề:</span>
+													<span id="username" class="cart-product-name"
+														style="color:var(--black-color)"
+														th:text="${post.tieude}"></span>
+												</div>
+											</div>
+										</td>
+										<td>
+											<div class="cart-product">
+												<div class="cart-product-link">
+													<span class="cart-product-link-name"
+														style="color:var(--black-color)">Ngày đăng:</span>
+													<span id="password" class="cart-product-name"
+														style="color:var(--black-color)" th:text="${post.date}"></span>
+												</div>
+											</div>
+										</td>
+										<td>
+											<div class="cart-product-price-nth">
+												<span id="type" class="cart-product-price-nth-link">Lượt xem:</span>
+												<div id="email" class="cart-product-price" th:text="${post.luotxem}">
+												</div>
+											</div>
+										</td>
+										<td>
+											<div class="cart-product-price-nth">
+												<span id="type" class="cart-product-price-nth-link">Lượt like:</span>
+												<div id="email" class="cart-product-price" th:text="${post.luotthich}">
+												</div>
+											</div>
+										</td>
+										<td>
+											<div class="cart-product-price-nth">
+												<span id="type" class="cart-product-price-nth-link">Bình luận:</span>
+												<div id="email" class="cart-product-price" th:text="${post.binhluan}">
+												</div>
+											</div>
+										</td>
+									</tr>
+								</th:block>
+
+								<tr class="row-last">
+									<td colspan="8"
+										style="text-align:unset; border-bottom: 2px solid var(--border-color);">
+										<ul class="pag-list " style="justify-content: center; margin-top:15px">
+
+
+											<li class="pag-list-item ">
+												<a th:href="@{|/thongke/page/${current-1}|}" class="pag-item__link ">
+													<i class="pag__link-icon fas fa-angle-left "></i>
+												</a>
+											</li>
+											<th:block th:each="item : ${#numbers.sequence(begin,end)}">
+												<th:block th:if="${current == item}">
+													<li class="pag-list-item ">
+														<a th:href="@{|/thongke/page/${item}|}"
+															class="pag-item__link pag-item__link-active"
+															th:text="${item}"></a>
+													</li>
+												</th:block>
+												<th:block th:unless="${current == item}">
+													<li class="pag-list-item ">
+														<a th:href="@{|/thongke/page/${item}|}" class="pag-item__link"
+															th:text="${item}"></a>
+													</li>
+												</th:block>
+											</th:block>
+											<li class="pag-list-item ">
+												<a th:href="@{|/thongke/page/${current+1}|}" class="pag-item__link ">
+													<i class="pag__link-icon fas fa-angle-right "></i>
+												</a>
+											</li>
+
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<th:block th:include="@{/footer.html}"></th:block>
+	<script th:src="@{/index.js}">
+		manager('.cart-heading-button', 'Add User', 'Edit User')
+	</script>
+</body>
+
+</html>

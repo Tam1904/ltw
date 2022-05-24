@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TRANG CHỦ</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/main.css}" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link th:href="@{/templatemo-xtra-blog.css}" rel="stylesheet">
+</head>
+
+<body>
+	<th:block th:include="@{/header.html}"></th:block>
+	<div class="container ">
+		<div class="modal_black ">
+		</div>
+
+		<div class="row tm-row">
+			<div class="col-12">
+				<hr class="tm-hr-primary">
+				<video width="954" height="535" controls class="tm-mb-40">
+					<source th:src="@{post.video}" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+			</div>
+		</div>
+		<div class="row tm-row">
+			<div class="tm-post-col">
+				<div class="tm-post-full" style="max-width: none;">
+					<div class="mb-4" style="padding-left: 15px;">
+						<h2 class="pt-2 tm-color-primary tm-post-title" th:text="${post.tieude}">Single Post of Xtra Blog HTML Template</h2>
+						<p class="tm-mb-40">
+							<th:block th:text="${post.ngaydang}">
+							</th:block>
+							posted by
+							<th:block th:text="${post.user.ten}">
+							</th:block>
+						</p>
+						
+						<p>
+							<th:block th:each="list: ${post.noidungs}">
+								<th:block th:text="${list}">
+								</th:block>
+								<br>
+							</th:block>
+							
+						</p>
+						<form th:action="@{/blog/manager/back}" style="width: 100px;" class="d-block text-right tm-color-primary"><button
+								class="btn-order ">Quay lại</button>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<th:block th:include="@{/footer.html}"></th:block>
+	<script th:src="@{/index.js}"></script>
+</body>
+
+</html>
