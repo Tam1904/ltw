@@ -4,15 +4,19 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>TRANG CHỦ</title>
+	<title>TRANG CHỦ v</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-	<link rel="stylesheet" href="main2.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/style/main2.css}">
+	<link rel="stylesheet" th:href="@{/style/main1.css}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
 	<th:block th:include="@{/header.html}"></th:block>
-	<div class="container-fluid" style="display: flex;">
+	<div class="container-fluid" style="display: flex;width: 95%">
 		<div class="grid__column-2">
 			<div class="category">
 				<header class="top-product-heading">
@@ -25,7 +29,7 @@
 					<li class="category-item">
 						<img src="https://www.blogamthuc.com/wp-content/uploads/2018/10/anh_1-120x120.jpg"
 							class="category-item-img">
-						<a href="" class="category-item__link">
+						<a th:href="@{/filter(linhvuc='Món Ngon Việt Nam')}" class="category-item__link">
 							Món Ngon Việt Nam
 						</a>
 					</li>
@@ -33,7 +37,7 @@
 					<li class="category-item">
 						<img src="https://www.blogamthuc.com/wp-content/uploads/2018/11/hinh08-120x120.jpg"
 							class="category-item-img">
-						<a href="" class="category-item__link">
+						<a th:href="@{/filter(linhvuc='Món Ngon Châu Âu')}" class="category-item__link">
 							Món Ngon Châu Âu
 						</a>
 
@@ -42,7 +46,7 @@
 					<li class="category-item">
 						<img src="https://www.blogamthuc.com/wp-content/uploads/2017/04/photo-0-1491792416150-120x120.jpg"
 							class="category-item-img">
-						<a href="" class="category-item__link">
+						<a th:href="@{/filter(linhvuc='Món Ngon Châu Á')}" class="category-item__link">
 							Món Ngon Châu Á
 						</a>
 
@@ -51,7 +55,7 @@
 					<li class="category-item">
 						<img src="https://www.blogamthuc.com/wp-content/uploads/2015/01/buncamientay-120x120.jpg"
 							class="category-item-img">
-						<a href="" class="category-item__link">
+						<a th:href="@{/filter(linhvuc='Món Ngon Đặc Sản')}" class="category-item__link">
 							Món Ngon Đặc Sản
 						</a>
 
@@ -60,7 +64,7 @@
 					<li class="category-item">
 						<img src="https://www.blogamthuc.com/wp-content/uploads/2019/05/tuyet-cu-meo-voi-5-mon0ngon-lam-tuy-dau-phu1-120x120.jpg"
 							class="category-item-img">
-						<a href="" class="category-item__link">
+						<a th:href="@{/filter(linhvuc='Món Ngon Dễ Làm')}" class="category-item__link">
 							Món Ngon Dễ Làm
 						</a>
 
@@ -69,7 +73,7 @@
 					<li class="category-item">
 						<img src="https://www.blogamthuc.com/wp-content/uploads/2018/08/chao-luon-cho-be-20160804-mach-me-cach-nau-chao-luon-cho-be-lon-nha-1532376353-386-width500height333-120x120.jpg"
 							class="category-item-img">
-						<a href="" class="category-item__link">
+						<a th:href="@{/filter(linhvuc='Món Ngon Cho Bé')}" class="category-item__link">
 							Món Ngon Cho Bé
 						</a>
 
@@ -84,238 +88,80 @@
 					</h3>
 				</header>
 				<ul class="top-product-list">
-					<li class="top-product-list-item">
-						<div class="top-product-list-item-1">
-							<a href="" class="top-product-list-name">
-								Mách bạn cách làm món mì xào gà khiến cả nhà mê tít
-							</a>
-							<a href="" class="top-product-list-link-img">
-								<img src="https://www.blogamthuc.com/wp-content/uploads/2017/04/20170315173509-mi-xao-1-120x120.jpg"
-									alt="" class="top-product-list-item-img">
-							</a>
-						</div>
+					<th:block th:each="top: ${session.tops}">
+						<li class="top-product-list-item">
+							<div class="top-product-list-item-1">
+								<a th:href="@{|/post/${top.id}|}" class="top-product-list-name" th:text="${top.tieude}">
+								</a>
+								<a th:href="@{|/post/${top.id}|}" class="top-product-list-link-img">
+									<img th:src="${top.anh}" alt="" class="top-product-list-item-img">
+								</a>
+							</div>
 
 
-					</li>
-					<li class="top-product-list-item">
-						<div class="top-product-list-item-1">
-							<a href="" class="top-product-list-name">
-								Cách làm sữa ngô thơm ngon, bổ dưỡng đảm bảo vệ sinh tại nhà
-							</a>
-							<a href="" class="top-product-list-link-img">
-								<img src="https://www.blogamthuc.com/wp-content/uploads/2017/04/20170316174249-sua-ngo-120x120.jpg"
-									alt="" class="top-product-list-item-img">
-							</a>
-						</div>
-
-					</li>
-					<li class="top-product-list-item">
-						<div class="top-product-list-item-1">
-							<a href="" class="top-product-list-name">
-								Hướng dẫn cách làm kẹo lạc vừng nhâm nhi cùng ly trà ấm ngày lạnh
-							</a>
-							<a href="" class="top-product-list-link-img">
-								<img src="https://www.blogamthuc.com/wp-content/uploads/2017/04/20170316170408-lac-1-120x120.jpg"
-									alt="" class="top-product-list-item-img">
-							</a>
-						</div>
-
-					</li>
-					<li class="top-product-list-item">
-						<div class="top-product-list-item-1">
-							<a href="" class="top-product-list-name">
-								Làm mỳ Ý ngon mà không khó
-							</a>
-							<a href="" class="top-product-list-link-img">
-								<img src="https://www.blogamthuc.com/wp-content/uploads/2015/04/1392084431_1800277-735792909767085-849351044-n-jpg-120x120.jpg"
-									alt="" class="top-product-list-item-img">
-							</a>
-						</div>
-
-					</li>
-					<li class="top-product-list-item">
-						<div class="top-product-list-item-1">
-							<a href="" class="top-product-list-name">
-								Ăn là ghiền với Pizza xé lớp
-							</a>
-							<a href="" class="top-product-list-link-img">
-								<img src="https://www.blogamthuc.com/wp-content/uploads/2014/06/pizza-xep-lop-726467-1-120x120.jpg"
-									alt="" class="top-product-list-item-img">
-							</a>
-						</div>
-
-					</li>
-
+						</li>
+					</th:block>
 				</ul>
 			</div>
 		</div>
 		<main class="tm-main" style="width:75% ;">
-			<div class="row tm-row">
-				<article class="col-12 col-md-6 tm-post">
-					<hr class="tm-hr-primary">
-					<a href="post.html" class="effect-lily tm-post-link tm-pt-60">
-						<div class="tm-post-link-inner">
-							<img th:src="@{/img-01.jpg}" alt="Image" class="img-fluid">
+			<th:block th:if="${filter!=null and session.text==null }">
+				<div class="row " style="margin-left: 10px;margin-top: 4px;">
+					<div class="grid__row-title ">
+						<h3 class="grid__row-title-name " style="text-transform: uppercase;" th:text="${filter}"></h3>
+					</div>
+				</div>
+			</th:block>
+			<th:block th:if="${session.text!=null}">
+				<div class="row " style="margin-left: 10px;margin-top: 4px;">
+					<div class="grid__row-title ">
+						<h3 class="grid__row-title-name " style="text-transform: uppercase;" th:text="|Kết quả tìm kiếm cho '${session.text}'|"></h3>
+					</div>
+				</div>
+			</th:block>
+			<div class="row tm-row" style="margin-top: 10px;">
+				<th:block th:each="post : ${posts}">
+					<article class="col-12 col-md-6 tm-post" style="flex:0 0 33.33333%;">
+						<!--<hr class="tm-hr-primary">-->
+						<a th:href="@{|/post/${post.id}|}" class="effect-lily tm-post-link">
+							<div class="tm-post-link-inner">
+								<img th:src="${post.anh}" alt="Image" class="img-fluid" style="height: 270px">
+							</div>
+							<!--<span class="position-absolute tm-new-badge">New</span>-->
+							<h2 class="tm-pt-30 tm-color-primary tm-post-title" th:text="${post.tieude}" style="min-height: 100px;padding-top: 10px;"></h2>
+						</a>
+						<!--<p class="tm-pt-30" th:text="${post.noidung}" style="line-height: 1.5rem;">
+						</p>-->
+						<div class="tm-pt-45" style="display: flex; justify-content: flex-end; font-size: 1.15rem;">
+							<span class="tm-color-primary" th:text="${post.date}"></span>
 						</div>
-						<!-- <span class="position-absolute tm-new-badge">New</span> -->
-						<h2 class="tm-pt-30 tm-color-primary tm-post-title">Simple and useful HTML layout</h2>
-					</a>
-					<p class="tm-pt-30">
-						There is a clickable image with beautiful hover effect and active title link for each post item.
-						Left side is a sticky menu bar. Right side is a blog content that will scroll up and down.
-					</p>
-					<div class="d-flex justify-content-between tm-pt-45">
-						<span class="tm-color-primary">Travel . Events</span>
-						<span class="tm-color-primary">June 24, 2020</span>
-					</div>
-					<hr>
-					<div class="d-flex justify-content-between">
-						<span>36 comments</span>
-						<span>by Admin Nat</span>
-					</div>
-				</article>
-				<article class="col-12 col-md-6 tm-post">
-					<hr class="tm-hr-primary">
-					<a href="post.html" class="effect-lily tm-post-link tm-pt-60">
-						<div class=" tm-post-link-inner">
-							<img th:src="@{/img-02.jpg}" alt="Image" class="img-fluid">
+						<hr>
+						<div class="d-flex justify-content-between" style="font-size: 1.15rem;">
+							<span th:text="|${post.binhluan} comments|"></span>
+							<span th:text="|by ${post.user.username}|"></span>
 						</div>
-						<!-- <span class="position-absolute tm-new-badge">New</span> -->
-						<h2 class="tm-pt-30 tm-color-primary tm-post-title">Multi-purpose blog template</h2>
-					</a>
-					<p class="tm-pt-30">
-						<a rel="nofollow" href="https://templatemo.com/tm-553-xtra-blog" target="_blank">Xtra Blog</a>
-						is a multi-purpose HTML CSS template from TemplateMo website. Blog list, single post, about,
-						contact pages are included. Left sidebar
-						fixed width and content area is a fluid full-width.
-					</p>
-					<div class="d-flex justify-content-between tm-pt-45">
-						<span class="tm-color-primary">Creative . Design . Business</span>
-						<span class="tm-color-primary">June 16, 2020</span>
-					</div>
-					<hr>
-					<div class="d-flex justify-content-between">
-						<span>48 comments</span>
-						<span>by Admin Sam</span>
-					</div>
-				</article>
-				<article class="col-12 col-md-6 tm-post">
-					<hr class="tm-hr-primary">
-					<a href="post.html" class="effect-lily tm-post-link tm-pt-20">
-						<div class="tm-post-link-inner">
-							<img th:src="@{/img-03.jpg}" alt="Image" class="img-fluid">
-						</div>
-						<h2 class="tm-pt-30 tm-color-primary tm-post-title">How can you apply Xtra Blog</h2>
-					</a>
-					<p class="tm-pt-30">
-						You are <u>allowed</u> to convert this template as any kind of CMS theme or template for your
-						custom website builder. You can also use this for your clients. Thank you for choosing us.
-					</p>
-					<div class="d-flex justify-content-between tm-pt-45">
-						<span class="tm-color-primary">Music . Audio</span>
-						<span class="tm-color-primary">June 11, 2020</span>
-					</div>
-					<hr>
-					<div class="d-flex justify-content-between">
-						<span>24 comments</span>
-						<span>by John Walker</span>
-					</div>
-				</article>
-				<article class="col-12 col-md-6 tm-post">
-					<hr class="tm-hr-primary">
-					<a href="post.html" class="effect-lily tm-post-link tm-pt-20">
-						<div class="tm-post-link-inner">
-							<img th:src="@{/img-04.jpg}" alt="Image" class="img-fluid">
-						</div>
-						<h2 class="tm-pt-30 tm-color-primary tm-post-title">A little restriction to apply</h2>
-					</a>
-					<p class="tm-pt-30">
-						You are <u>not allowed</u> to re-distribute this template as a downloadable ZIP file on any
-						template collection website. This is strongly prohibited as we worked hard for this template.
-						Please contact TemplateMo for more information.
-						<br>For example, <a href="https://www.free-css.com/free-css-templates/page272/xtra-blog"
-							target="_blank">Free-CSS</a> redistributed this Xtra Blog template on their website without
-						asking any permission. It is an illegal act by
-						Free-CSS website doing an unauthorized reposting.
-					</p>
-					<div class="d-flex justify-content-between tm-pt-45">
-						<span class="tm-color-primary">Artworks . Design</span>
-						<span class="tm-color-primary">June 4, 2020</span>
-					</div>
-					<hr>
-					<div class="d-flex justify-content-between">
-						<span>72 comments</span>
-						<span>by Admin Sam</span>
-					</div>
-				</article>
-				<article class="col-12 col-md-6 tm-post">
-					<hr class="tm-hr-primary">
-					<a href="post.html" class="effect-lily tm-post-link tm-pt-20">
-						<div class="tm-post-link-inner">
-							<img th:src="@{/img-05.jpg}" alt="Image" class="img-fluid">
-						</div>
-						<h2 class="tm-pt-30 tm-color-primary tm-post-title">Color hexa values of Xtra Blog</h2>
-					</a>
-					<p class="tm-pt-30">
-						If you wish to kindly support us, please contact us or contribute a small PayPal amount to info
-						[at] templatemo.com that is helpful for us.
-						<br> Title #099 New #0CC <br>
-						<span class="tm-color-primary">Text #999 Line #CCC Next #0CC Prev #F0F0F0</span>
-					</p>
-					<div class="d-flex justify-content-between tm-pt-45">
-						<span class="tm-color-primary">Creative . Video . Audio</span>
-						<span class="tm-color-primary">May 31, 2020</span>
-					</div>
-					<hr>
-					<div class="d-flex justify-content-between">
-						<span>84 comments</span>
-						<span>by Admin Sam</span>
-					</div>
-				</article>
-				<article class="col-12 col-md-6 tm-post">
-					<hr class="tm-hr-primary">
-					<a href="post.html" class="effect-lily tm-post-link tm-pt-20">
-						<div class="tm-post-link-inner">
-							<img th:src="@{/img-06.jpg}" alt="Image" class="img-fluid">
-						</div>
-						<h2 class="tm-pt-30 tm-color-primary tm-post-title">Donec convallis varius risus</h2>
-					</a>
-					<p class="tm-pt-30">
-						Quisque id ipsum vel sem maximus vulputate sed quis velit. Nunc vel turpis eget orci elementum
-						cursus vitae in eros. Quisque vulputate nulla ut dolor consectetur luctus.
-					</p>
-					<div class="d-flex justify-content-between tm-pt-45">
-						<span class="tm-color-primary">Visual . Artworks</span>
-						<span class="tm-color-primary">June 16, 2020</span>
-					</div>
-					<hr>
-					<div class="d-flex justify-content-between">
-						<span>96 comments</span>
-						<span>by Admin Sam</span>
-					</div>
-				</article>
+					</article>
+				</th:block>
+
 			</div>
 			<div class="row tm-row tm-mt-100 tm-mb-75">
 				<div class="tm-prev-next-wrapper">
-					<a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
-					<a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+					<a th:classappend="${current==1}?'disabled'" th:href="@{|/page/${current-1}|}"
+						class="mb-2 tm-btn tm-btn-primary tm-prev-next tm-mr-20">Prev</a>
+					<a th:classappend="${current==end}?'disabled'" th:href="@{|/page/${current+1}|}"
+						class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
 				</div>
 				<div class="tm-paging-wrapper">
 					<span class="d-inline-block mr-3">Page</span>
 					<nav class="tm-paging-nav d-inline-block">
 						<ul>
-							<li class="tm-paging-item active">
-								<a href="#" class="mb-2 tm-btn tm-paging-link">1</a>
-							</li>
-							<li class="tm-paging-item">
-								<a href="#" class="mb-2 tm-btn tm-paging-link">2</a>
-							</li>
-							<li class="tm-paging-item">
-								<a href="#" class="mb-2 tm-btn tm-paging-link">3</a>
-							</li>
-							<li class="tm-paging-item">
-								<a href="#" class="mb-2 tm-btn tm-paging-link">4</a>
-							</li>
+							<th:block th:each="item : ${#numbers.sequence(begin,end)}">
+								<li class="tm-paging-item active">
+									<a th:style="${item==current}?'background-color: #09b6b6'"
+										th:href="@{|/page/${item}|}" class="mb-2 tm-btn tm-paging-link"
+										th:text="${item}"></a>
+								</li>
+							</th:block>
 						</ul>
 					</nav>
 				</div>
@@ -323,9 +169,6 @@
 		</main>
 	</div>
 	<th:block th:include="@{/footer.html}"></th:block>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/templatemo-script.js"></script>
-	
 </body>
 
 </html>

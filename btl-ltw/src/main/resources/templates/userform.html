@@ -8,15 +8,15 @@
 					<button type='submit' class="close" data-dismiss="modal" aria-hidden="true" th:onclick= "xoa()">&times;</button>
 				</div>
 			</div>
-			<div id="formUser" th:action="@{/managerUser/updateUser}" th:object="${user}" method="post">
+			<div id="formUser" th:action="@{/test}" th:object="${user}" method="post">
 				<div class="modal-body">
 					<div class="form-column-2">
 						<div class="form-group" style="width: 49%;">
 							<label class="label">Họ và Tên</label>
 							<input id="ten" value="" name="ten" type="text" class="form-control"
 								required>
-							<input id="id" value="" name="id" type="hidden" class="form-control">
-							<input id="anh" value="" name="anh" type="hidden" class="form-control">
+							<input id="id" value="0" name="id" type="hidden" class="form-control">
+							<!--<input id="anh" value="" name="anh" type="hidden" class="form-control">-->
 						</div>
 						<div class="form-group" style="width: 49%;">
 							<label class="label">Tên tài khoản</label>

@@ -22,8 +22,8 @@ public class UserDaoAPI implements UserDao {
 
 	@Override
 	public void addUser(User user) {
-		String sql = "insert into user(ten,username,password,phanquyen) value(?,?,?,?)";
-		jdbc.update(sql,user.getTen(),user.getUsername(),user.getPassword(),user.getPhanquyen());
+		String sql = "insert into user(ten, username, password, email, gioithieu, phanquyen) value(?,?,?,?,?,?)";
+		jdbc.update(sql,user.getTen(),user.getUsername(),user.getPassword(),user.getEmail(),user.getGioithieu(), user.getPhanquyen());
 	}
 
 	@Override

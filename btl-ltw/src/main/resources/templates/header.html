@@ -30,6 +30,11 @@
 										</a>
 									</li>
 									<li class="header__navbar-item-user-name-list1-item">
+										<a th:href="@{|/account/detail/${session.user.id}|}" class="header__navbar-item-user-name-list1-item-link">
+											Các bài post
+										</a>
+									</li>
+									<li class="header__navbar-item-user-name-list1-item">
 										<a th:href="@{/logout}" class="header__navbar-item-user-name-list1-item-link">
 											Đăng xuất
 										</a>
@@ -50,34 +55,17 @@
 
 
 				<div class="header__seach">
-					<form th:action="@{/searchHome}" method="post" class="header__seach-wrap" id='header-seach'>
-						<input name = "text" type="text" class="header__seach-input" placeholder="Tìm kiếm sản phẩm">
+					<form th:action="@{/search}" method="post" class="header__seach-wrap" id='header-seach'>
+						<input name = "text" type="text" class="header__seach-input" placeholder="Tìm kiếm post" autocomplete="off" th:onkeyup="auto()" th:onblur="xoa()" >
 
 						<div class="header_seach-history">
 							<h3 class="header__seach-history-heading">
-								Sản phẩm
+								Post
 							</h3>
 							<ul class="header__seach-history-list">
-								<li class="header__seach-history-item">
-									<a class="header__seach-history-item-link"
-										title="Giày Nike Jordan 1 Low - Light Smoke Grey rep 1:1 1:1 1:1">
-
-										<img th:src="@{https://capvirgo.com/wp-content/uploads/2022/03/28482a09-300x300.jpg?v=1646128657}"
-											alt="" class="header__seach-history-item-img">
-										<div class="header__seach-history-item-product">
-											<span class="header__seach-history-item-product-name">
-												Giày Nike Jordan 1 Low - Light Smoke Grey rep 1:1 1:1 1:1
-											</span>
-											<div class="header__seach-history-item-product-price">
-												<span>890.000</span>
-												<span class="header__seach-history-item-product-price-item">đ</span>
-											</div>
-										</div>
-									</a>
-								</li>
+								
 							</ul>
 						</div>
-
 						<button class="header__seach-btn">
 							Tìm kiếm
 						</button>
@@ -111,20 +99,54 @@
 				<a th:href="@{/blog/dangpost}" class="home-heading-btn ">
 					ĐĂNG POST
 				</a>
-				
-				<a th:href="@{/blog/manager}" class="home-heading-btn ">
-					QUẢN LÝ POST
-				</a>
-
-				<!--<a th:href="@{/managerOrderCustomer}" class="home-heading-btn ">
-					XEM CÁC ĐƠN HÀNG
-				</a>-->
+				<th:block th:if="${session.user!= null and session.user.phanquyen=='Quản lý'}">
+					<a th:href="@{/blog/manager}" class="home-heading-btn ">
+						QUẢN LÝ POST
+					</a>
+				</th:block>
+				<th:block th:if="${session.user!= null and session.user.phanquyen=='Quản lý'}">
+					<a th:href="@{/thongke}" class="home-heading-btn ">
+						THỐNG KÊ
+					</a>
+				</th:block>
+				<th:block th:if="${session.user!= null and session.user.phanquyen=='Quản lý'}">
+					<a th:href="@{/managerUser}" class="home-heading-btn ">
+						QUẢN LÝ NGƯỜI DÙNG
+					</a>
+				</th:block>
 
 			
 
 			</div>
 		</div>
 	</div>
-
-
 </header>
+
+<script th:inline="javascript" type="text/javascript">
+	function auto() {
+		var s = "";
+		s = document.querySelector(".header__seach-input").value;
+		document.querySelector(".header_seach-history").style.display = "block";
+		$.ajax({
+			type: "post",
+			url: "http://localhost:8080/autoSearch",
+			data: {
+				text: s,
+			},
+			dataType: "html",
+			success: function (data) {
+				document.querySelector(".header__seach-history-list").innerHTML = data
+			}
+
+		});	
+	}
+	
+	
+	function xoa(){
+		setTimeout(an,100);
+		function an(){
+			document.querySelector(".header_seach-history").style.display = "none";
+		}
+	}
+	
+</script>

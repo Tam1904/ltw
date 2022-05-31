@@ -4,12 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>TRANG CHỦ</title>
+	<title>TRANG CHỦ v</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-	<link th:href="@{/bootstrap.min.css}" rel="stylesheet">
-	<link th:href="@{/main.css}" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link th:href="@{/templatemo-xtra-blog.css}" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/style/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/style/main2.css}">
+	<link rel="stylesheet" th:href="@{/style/main1.css}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 </head>
 
 <body>
@@ -23,7 +23,6 @@
 				<hr class="tm-hr-primary">
 				<video width="954" height="535" controls class="tm-mb-40">
 					<source th:src="@{post.video}" type="video/mp4">
-					Your browser does not support the video tag.
 				</video>
 			</div>
 		</div>
@@ -33,10 +32,10 @@
 					<div class="mb-4" style="padding-left: 15px;">
 						<h2 class="pt-2 tm-color-primary tm-post-title" th:text="${post.tieude}">Single Post of Xtra Blog HTML Template</h2>
 						<p class="tm-mb-40">
-							<th:block th:text="${post.ngaydang}">
+							<th:block th:text="${post.date}">
 							</th:block>
 							posted by
-							<th:block th:text="${post.user.ten}">
+							<th:block th:text="${post.user.username}">
 							</th:block>
 						</p>
 						
@@ -59,7 +58,7 @@
 	</div>
 
 	<th:block th:include="@{/footer.html}"></th:block>
-	<script th:src="@{/index.js}"></script>
+	
 </body>
 
 </html>

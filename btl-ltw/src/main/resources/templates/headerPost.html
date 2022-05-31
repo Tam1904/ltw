@@ -85,17 +85,21 @@
 				<a th:href="@{/blog/dangpost}" class="home-heading-btn ">
 					ĐĂNG POST
 				</a>
-				
-				<a th:href="@{/blog/manager}" class="home-heading-btn ">
-					QUẢN LÝ POST
-				</a>
-
-				<!--<a th:href="@{/managerOrderCustomer}" class="home-heading-btn ">
-					XEM CÁC ĐƠN HÀNG
-				</a>-->
-
-			
-
+				<th:block th:if="${session.user!= null and session.user.phanquyen=='Quản lý'}">
+					<a th:href="@{/blog/manager}" class="home-heading-btn ">
+						QUẢN LÝ POST
+					</a>
+				</th:block>
+				<th:block th:if="${session.user!= null and session.user.phanquyen=='Quản lý'}">
+					<a th:href="@{/thongke}" class="home-heading-btn ">
+						THỐNG KÊ
+					</a>
+				</th:block>
+				<th:block th:if="${session.user!= null and session.user.phanquyen=='Quản lý'}">
+					<a th:href="@{/managerUser}" class="home-heading-btn ">
+						QUẢN LÝ NGƯỜI DÙNG
+					</a>
+				</th:block>
 			</div>
 		</div>
 	</div>

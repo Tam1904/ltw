@@ -43,7 +43,7 @@ public class BlogController {
 	@PostMapping("/post")
 	public String post (Post post, @SessionAttribute("user") User user) {
 		pDao.post(post, user.getId());
-		return "index";
+		return "redirect:/";
 	}
 	
 	

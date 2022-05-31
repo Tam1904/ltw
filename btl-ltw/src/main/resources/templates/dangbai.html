@@ -4,11 +4,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>TRANG CHỦ</title>
-	<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css}">
-	<link th:href="@{/bootstrap.min.css}" rel="stylesheet">
-	<link th:href="@{/main.css}" rel="stylesheet">
-	<link th:href="@{/templatemo-xtra-blog.css}" rel="stylesheet">
+	<title>TRANG CHỦ v</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+	<link rel="stylesheet" th:href="@{/style/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/style/main2.css}">
+	<link rel="stylesheet" th:href="@{/style/main1.css}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 </head>
 
@@ -50,14 +50,14 @@
 															</div>
 															<div class="form-group " style="width: 49%; ">
 																<label class="label ">Video minh họa:</label>
-																<input value="" name="video" type="file"
+																<input value="" name="video" type="text"
 																	class="form-control " required>
 															</div>
 														</div>
 														
 														<div class="form-group ">
 															<label class="label ">Hình ảnh minh họa:</label>
-															<input value="" name="anh" type="file" class="form-control" required>
+															<input value="" name="anh" type="text" class="form-control" required>
 														</div>
 
 														<div class="form-group ">
@@ -100,7 +100,7 @@
 		</div>
 	</div>
 	<th:block th:include="@{/footer.html}"></th:block>
-	<script th:src="@{/index.js}"></script>
+	
 </body>
 
 </html>

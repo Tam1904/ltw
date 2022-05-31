@@ -56,13 +56,13 @@ public class PostDaoAPI implements PostDao{
 
 	@Override
 	public List<Post> getPostsThongKe(String text) {
-		String sql = "select * from post where ((select instr(tieude,?))>0) and trangthai = 1 order by luotxem, luotthich, binhluan";
+		String sql = "select * from post where ((select instr(tieude,?))>0) and trangthai = 1 order by luotxem desc, luotthich desc, binhluan desc";
 		return jdbc.query(sql, this::mapRowToPost,text);
 	}
 
 	@Override
 	public List<Post> getPostsThongKe(String text, String linhvuc) {
-		String sql = "select * from post where ((select instr(tieude,?))>0) and ((select instr(linhvuc,?))>0) and trangthai=1 order by luotxem, luotthich, binhluan";
+		String sql = "select * from post where ((select instr(tieude,?))>0) and ((select instr(linhvuc,?))>0) and trangthai=1 order by luotxem desc, luotthich desc, binhluan desc";
 		return jdbc.query(sql, this::mapRowToPost,text,linhvuc);
 	}
 
@@ -78,26 +78,78 @@ public class PostDaoAPI implements PostDao{
 
 	@Override
 	public List<Post> getPostsThongKeOld(String text, String linhvuc) {
-		String sql = "select * from post where ((select instr(tieude,?))>0) and ((select instr(linhvuc,?))>0) and trangthai=1 order by ngaydang asc, luotxem, luotthich, binhluan";
+		String sql = "select * from post where ((select instr(tieude,?))>0) and ((select instr(linhvuc,?))>0) and trangthai=1 order by ngaydang asc, luotxem desc, luotthich desc, binhluan desc";
 		return jdbc.query(sql, this::mapRowToPost,text,linhvuc);
 	}
 
 	@Override
 	public List<Post> getPostsThongKeNew(String text, String linhvuc) {
-		String sql = "select * from post where ((select instr(tieude,?))>0) and ((select instr(linhvuc,?))>0) and trangthai=1 order by ngaydang desc,luotxem, luotthich, binhluan";
+		String sql = "select * from post where ((select instr(tieude,?))>0) and ((select instr(linhvuc,?))>0) and trangthai=1 order by ngaydang desc, luotxem desc, luotthich desc, binhluan desc";
 		return jdbc.query(sql, this::mapRowToPost,text,linhvuc);
 	}
 
 	@Override
 	public List<Post> getPostsByID(int id) {
-		String sql = "select * from post where iduser= ? and trangthai=1 order by ngaydang desc,luotxem, luotthich, binhluan";
+		String sql = "select * from post where iduser= ? and trangthai=1 order by ngaydang desc, luotxem desc, luotthich desc, binhluan desc";
 		return jdbc.query(sql, this::mapRowToPost,id);
 	}
 
 	@Override
-	public List<Post> getPostsRelated(String linhvuc) {
-		String sql = "select * from post where linhvuc= ? and trangthai=1 order by ngaydang desc,luotxem, luotthich, binhluan LIMIT 4";
-		return jdbc.query(sql, this::mapRowToPost,linhvuc);
+	public List<Post> getPostsRelated(String linhvuc,int idpost) {
+		String sql = "select * from post where linhvuc= ? and id!= ? and trangthai=1 order by ngaydang desc,luotxem desc, luotthich desc, binhluan desc LIMIT 4";
+		return jdbc.query(sql, this::mapRowToPost,linhvuc,idpost);
+	}
+
+	@Override
+	public List<Post> getPostsTrangThai(String text) {
+		String sql = "select * from post where ((select instr(tieude,?))>0) and trangthai =1 order by ngaydang desc";
+		return jdbc.query(sql, this::mapRowToPost,text);
+	}
+
+	@Override
+	public List<Post> getTopPosts() {
+		String sql = "select * from post where trangthai =1 order by luotxem desc LIMIT 10";
+		return jdbc.query(sql, this::mapRowToPost);
+	}
+
+	@Override
+	public List<Post> getPostsTrangThai(String text, String linhvuc) {
+		String sql = "select * from post where ((select instr(tieude,?))>0) and trangthai =1 and ((select instr(linhvuc,?))>0)  order by ngaydang desc";
+		return jdbc.query(sql, this::mapRowToPost,text,linhvuc);
+	}
+
+	@Override
+	public void incrementView(int idpost) {
+		String sql = "update post set luotxem = luotxem + 1 where id = ?";
+		jdbc.update(sql,idpost);
+	}
+
+	@Override
+	public void incrementLike(int idpost) {
+		String sql = "update post set luotthich = luotthich + 1 where id = ?";
+		jdbc.update(sql,idpost);
+	}
+
+	@Override
+	public void decrementLike(int idpost) {
+		String sql = "update post set luotthich = luotthich - 1 where id = ?";
+		jdbc.update(sql,idpost);
+	}
+
+	@Override
+	public void comment(String comment, int idpost, int iduser) {
+		String sql="insert into comment(iduser,idpost,noidung,ngay) value(?,?,?,now())";
+		jdbc.update(sql,iduser,idpost,comment);
+		sql = "update post set binhluan = binhluan +1 where id = ?";
+		jdbc.update(sql,idpost);
+	}
+
+	@Override
+	public void commentReply(String comment, int idcomment, int iduser,int idpost) {
+		String sql="insert into commentreply(iduser,idcomment,noidung,ngaydang) value(?,?,?,now())";
+		jdbc.update(sql,iduser,idcomment,comment);
+		sql = "update post set binhluan = binhluan +1 where id = ?";
+		jdbc.update(sql,idpost);
 	}
 
 }

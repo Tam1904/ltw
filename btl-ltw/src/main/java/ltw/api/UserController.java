@@ -1,6 +1,7 @@
 package ltw.api;
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,14 +33,13 @@ public class UserController {
 	
 	@PostMapping("/updateUser")
 	public ResponseEntity<String> update(@ModelAttribute("id")int id, @ModelAttribute("ten")String ten,@ModelAttribute("username")String username, 
-			@ModelAttribute("password") String password, @ModelAttribute("anh")String anh, @ModelAttribute("email") String email,
+			@ModelAttribute("password") String password, @ModelAttribute("email") String email,
 			@ModelAttribute("gioithieu") String gioithieu, @ModelAttribute("phanquyen") String phanquyen,@ModelAttribute("action")String type,Model model) {
 		User user = new User();
 		user.setId(id);
 		user.setTen(ten);
 		user.setUsername(username);
 		user.setPassword(password);
-		user.setAnh(anh);
 		user.setEmail(email);
 		user.setGioithieu(gioithieu);
 		user.setPhanquyen(phanquyen);
@@ -56,8 +56,9 @@ public class UserController {
 	
 	@DeleteMapping("/deleteUser")
 	public ResponseEntity<String> delete(@ModelAttribute("listma")String listma) {
-		String [] ids = listma.split("\\s++");
-		for(String id : ids) {
+		StringTokenizer tk = new StringTokenizer(listma);
+		while(tk.hasMoreTokens()) {
+			String id = tk.nextToken();
 			uDao.deleteUser(Integer.parseInt(id));
 		}
 		return new ResponseEntity<>("OK",HttpStatus.OK);

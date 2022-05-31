@@ -4,12 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>TRANG CHỦ</title>
+	<title>TRANG CHỦ v</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-	<link th:href="@{/bootstrap.min.css}" rel="stylesheet">
-	<link th:href="@{/main.css}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" th:href="@{/style/main2.css}">
+	<link rel="stylesheet" th:href="@{/style/main1.css}">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link th:href="@{/templatemo-xtra-blog.css}" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 </head>
 
 <body>
@@ -140,7 +141,9 @@
 		</div>
 	</div>
 	<th:block th:include="@{/footer.html}"></th:block>
-	<script th:src="@{/index.js}"></script>
+	<script th:src="@{/js/index.js}">
+		manager('.cart-heading-button', 'Add User', 'Edit User')
+	</script>
 	<script>
 		function chooseUser(event) {
 
@@ -160,7 +163,6 @@
 			form.querySelector("#ten").value = parent.querySelector("#ten").innerHTML.trim();
 			form.querySelector("#username").value = parent.querySelector("#username").innerHTML.trim();
 			form.querySelector("#password").value = parent.querySelector("#password").innerHTML.trim();
-			form.querySelector("#anh").value = parent.querySelector("#anh").innerHTML.trim();
 			form.querySelector("#phanquyen").value = parent.querySelector("#phanquyen").innerHTML.trim();
 			form.querySelector("#gioithieu").value = parent.querySelector("#gioithieu").innerHTML.trim();
 			form.querySelector("#email").value = parent.querySelector("#email").innerHTML.trim();
@@ -236,7 +238,6 @@
 			var ten = form.querySelector("#ten").value;
 			var username = form.querySelector("#username").value;
 			var password = form.querySelector("#password").value;
-			var anh = form.querySelector("#anh").value;
 			var email = form.querySelector("#email").value;
 			var gioithieu = form.querySelector("#gioithieu").value;
 			var phanquyen = form.querySelector("#phanquyen").value;
@@ -249,7 +250,6 @@
 					ten: ten,
 					username: username,
 					password: password,
-					anh: anh,
 					email: email,
 					gioithieu: gioithieu,
 					phanquyen: phanquyen,
@@ -293,7 +293,7 @@
 						s += box.value + " ";
 					}
 				}
-						console.log(s + "11111111111")
+				console.log(s);
 				if (s != "") {
 
 					if (confirm("Bạn muốn xóa người dùng") == true) {
@@ -319,8 +319,8 @@
 				}
 				else {
 
-					/*document.getElementById("search").style.display = 'none';
-					document.querySelector('.cart-detail').style.display = 'none';*/
+					document.getElementById("search").style.display = 'none';
+					document.querySelector('.cart-detail').style.display = 'none';
 					var list = document.querySelectorAll('.button-item');
 					for (var item of list) {
 						item.style.backgroundColor = 'var(--primary-color)';
@@ -350,7 +350,6 @@
 		}
 		manager('.cart-heading-button', 'Add User', 'Edit User')
 	</script>
-	<!-- <script src="js/templatemo-script.js"></script> -->
 </body>
 
 </html>
