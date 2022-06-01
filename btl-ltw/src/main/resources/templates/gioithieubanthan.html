@@ -49,7 +49,8 @@
 									<div class="cart-detail">
 										<table class="cart-table">
 											<thead class="cart-table-head">
-												<th:block th:unless="${session.user!=null and session.user.id == user.id}">
+												<th:block
+													th:unless="${session.user!=null and session.user.id == user.id}">
 													<th style="width: 15%; padding-left: 10px;">Thể loại</th>
 													<th style="width: 10%; padding-left: 10px;">Hình ảnh</th>
 													<th style="width: 27%; padding-left: 10px;">Tiêu đề</th>
@@ -58,7 +59,7 @@
 													<th id="type" style="width: 12%; padding-left: 10px;">Lượt like</th>
 													<th id="type" style="width: 12%; padding-left: 10px;">Bình luận</th>
 												</th:block>
-												
+
 												<th:block th:if="${session.user!=null and session.user.id == user.id}">
 													<th style="width: 15%; padding-left: 10px;">Thể loại</th>
 													<th style="width: 10%; padding-left: 10px;">Hình ảnh</th>
@@ -99,9 +100,13 @@
 																<div class="cart-product-link">
 																	<span class="cart-product-link-name"
 																		style="color:var(--black-color)">Tiêu đề:</span>
-																	<span id="username" class="cart-product-name"
+																	<!--<span id="username" class="cart-product-name"
 																		style="color:var(--black-color)"
-																		th:text="${post.tieude}"></span>
+																		th:text="${post.tieude}"></span>-->
+																	<a th:href=@{|/post/${post.id}|} id="username"
+																		class="cart-product-name"
+																		style="color:var(--black-color)"
+																		th:text="${post.tieude}"></a>
 																</div>
 															</div>
 														</td>
@@ -144,11 +149,16 @@
 																</div>
 															</div>
 														</td>
-														<th:block th:if="${session.user!=null and session.user.id == user.id}">
+														<th:block
+															th:if="${session.user!=null and session.user.id == user.id}">
 															<td class=" cart-table-td ">
-																<form th:action="@{|/xoapost/${post.id}|}" method="post" class=" cart-icon ">
-																	<input type="hidden"name="iduser" th:value="${post.user.id}" >
-																	<button style="border: none;background: none;"><i id="xoa" class=" fa fa-close cart-product-remove "></i></button>
+																<form th:action="@{|/xoapost/${post.id}|}" method="post"
+																	class=" cart-icon ">
+																	<input type="hidden" name="iduser"
+																		th:value="${post.user.id}">
+																	<button style="border: none;background: none;"><i
+																			id="xoa"
+																			class=" fa fa-close cart-product-remove "></i></button>
 																</form>
 															</td>
 														</th:block>

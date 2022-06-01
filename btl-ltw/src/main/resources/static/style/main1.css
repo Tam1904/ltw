@@ -1383,8 +1383,9 @@ like
 }
 
 .footer-img-view{
+	display:block;
 	width: 100px;
-	height: 60px;
+/*	height: 60px;*/
 }
 
 .footer-view{

@@ -30,7 +30,7 @@ public class ThongKeController {
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
 		List<String> linhvucs = pDao.getLinhVuc();
 		session.setAttribute("linhvucs", linhvucs);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -53,7 +53,7 @@ public class ThongKeController {
 		List<Post> posts = pDao.getPostsThongKe("",linhvuc);
 		session.setAttribute("linhvuc", linhvuc);
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -72,7 +72,7 @@ public class ThongKeController {
 	@GetMapping("/page/{current}")
 	public String managerPage(Model model, HttpSession session, @PathVariable("current")int current) {
 		PagedListHolder<?> pages = (PagedListHolder<?>) session.getAttribute("PageList");
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		if(current-1<0) {
 			current = 1;
@@ -81,8 +81,8 @@ public class ThongKeController {
 			current = pages.getPageCount();
 		}
 		pages.setPage(current-1);
-		int begin = Math.max(1, current- 4);
-		int end = Math.min(4, pages.getPageCount());
+		int begin = Math.max(1, current- 2);
+		int end = Math.min(begin + 3, pages.getPageCount());
 		model.addAttribute("current", current);
 		model.addAttribute("begin", begin);
 		model.addAttribute("end", end);
@@ -100,7 +100,7 @@ public class ThongKeController {
 		List<Post> posts = pDao.getPostsThongKe(text,linhvuc);
 		session.setAttribute("text", text);
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -123,7 +123,7 @@ public class ThongKeController {
 		List<Post> posts = pDao.getPostsThongKe(text,linhvuc);
 		session.setAttribute("linhvuc", linhvuc);
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -150,7 +150,7 @@ public class ThongKeController {
 		List<Post> posts = pDao.getPostsThongKeNew(text,linhvuc);
 		session.setAttribute("text", text);
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -177,7 +177,7 @@ public class ThongKeController {
 		List<Post> posts = pDao.getPostsThongKeOld(text,linhvuc);
 		session.setAttribute("text", text);
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;

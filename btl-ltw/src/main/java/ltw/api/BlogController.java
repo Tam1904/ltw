@@ -51,7 +51,7 @@ public class BlogController {
 	public String manager(Model model, HttpSession session) {
 		List<Post> posts = pDao.getPosts("");
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -69,7 +69,7 @@ public class BlogController {
 	@GetMapping("/manager/page/{current}")
 	public String managerPage(Model model, HttpSession session, @PathVariable("current")int current) {
 		PagedListHolder<?> pages = (PagedListHolder<?>) session.getAttribute("PageList");
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		if(current-1<0) {
 			current = 1;
@@ -78,8 +78,8 @@ public class BlogController {
 			current = pages.getPageCount();
 		}
 		pages.setPage(current-1);
-		int begin = Math.max(1, current- 4);
-		int end = Math.min(4, pages.getPageCount());
+		int begin = Math.max(1, current- 2);
+		int end = Math.min(begin + 3, pages.getPageCount());
 		model.addAttribute("current", current);
 		model.addAttribute("begin", begin);
 		model.addAttribute("end", end);
@@ -94,7 +94,7 @@ public class BlogController {
 		List<Post> posts = pDao.getPosts(text);
 		session.setAttribute("text", text);
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -138,7 +138,7 @@ public class BlogController {
 		}
 		List<Post> posts = pDao.getPosts(text);
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -166,7 +166,7 @@ public class BlogController {
 			}
 		}
 		PagedListHolder<?> pages = new PagedListHolder<>(postDa);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -194,7 +194,7 @@ public class BlogController {
 			}
 		}
 		PagedListHolder<?> pages = new PagedListHolder<>(postCh);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -211,7 +211,7 @@ public class BlogController {
 	@GetMapping("/manager/back")
 	public String back(Model model, HttpSession session) {
 		PagedListHolder<?> pages = (PagedListHolder<?>) session.getAttribute("PageList");
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int begin = 1;

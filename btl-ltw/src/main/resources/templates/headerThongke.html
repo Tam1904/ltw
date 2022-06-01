@@ -30,6 +30,11 @@
 										</a>
 									</li>
 									<li class="header__navbar-item-user-name-list1-item">
+										<a th:href="@{|/account/detail/${session.user.id}|}" class="header__navbar-item-user-name-list1-item-link">
+											Các bài post
+										</a>
+									</li>
+									<li class="header__navbar-item-user-name-list1-item">
 										<a th:href="@{/logout}" class="header__navbar-item-user-name-list1-item-link">
 											Đăng xuất
 										</a>
@@ -51,7 +56,7 @@
 
 				<div class="header__seach">
 					<form th:action="@{/thongke/search}" method="post" class="header__seach-wrap" id='header-seach'>
-						<input name = "text" type="text" class="header__seach-input" placeholder="Tìm kiếm bài Post" autocomplete="off">
+						<input name = "text" type="text" class="header__seach-input" placeholder="Tìm kiếm post" autocomplete="off">
 						<button class="header__seach-btn">
 							Tìm kiếm
 						</button>

@@ -37,7 +37,7 @@ public class HomeController {
 		List<Post> tops = pDao.getTopPosts();
 		session.setAttribute("tops", tops);
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -49,13 +49,14 @@ public class HomeController {
 		session.setAttribute("PageList", pages);
 		model.addAttribute("posts", pages.getPageList());
 		session.removeAttribute("text");
+		session.setAttribute("postsF", tops.subList(0, 3));
 		return "index";
 	}
 	
 	@GetMapping("/page/{current}")
 	public String indexPage(Model model, HttpSession session,@PathVariable("current")int current) {
 		PagedListHolder<?> pages = (PagedListHolder<?>) session.getAttribute("PageList");
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		if(current-1<0) {
 			current = 1;
@@ -64,12 +65,12 @@ public class HomeController {
 			current = pages.getPageCount();
 		}
 		pages.setPage(current-1);
-		int begin = Math.max(1, current- 4);
-		int end = Math.min(4, pages.getPageCount());
+		int begin = Math.max(1, current- 2);
+		int end = Math.min(begin + 3, pages.getPageCount());
 		model.addAttribute("current", current);
 		model.addAttribute("begin", begin);
 		model.addAttribute("end", end);
-		session.setAttribute("PageList", pages);
+//		session.setAttribute("PageList", pages);
 		model.addAttribute("posts", pages.getPageList());
 		return "index";
 	}
@@ -104,6 +105,7 @@ public class HomeController {
 			return "editAccount";
 		}
 		uDao.updateUser(user);
+		session.setAttribute("user", user);
 		return "redirect:/";
 	}
 	
@@ -112,7 +114,7 @@ public class HomeController {
 		User user = uDao.findUser(id);
 		List<Post> posts = pDao.getPostsByID(id);
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -132,7 +134,7 @@ public class HomeController {
 		User user = uDao.findUser(id);
 		model.addAttribute("user", user);
 		PagedListHolder<?> pages = (PagedListHolder<?>) session.getAttribute("PageList");
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		if(current-1<0) {
 			current = 1;
@@ -141,8 +143,8 @@ public class HomeController {
 			current = pages.getPageCount();
 		}
 		pages.setPage(current-1);
-		int begin = Math.max(1, current- 4);
-		int end = Math.min(4, pages.getPageCount());
+		int begin = Math.max(1, current- 2);
+		int end = Math.min(begin + 3, pages.getPageCount());
 		model.addAttribute("current", current);
 		model.addAttribute("begin", begin);
 		model.addAttribute("end", end);
@@ -195,7 +197,7 @@ public class HomeController {
 		
 		List<Post> posts = pDao.getPostsTrangThai(text, linhvuc );
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;
@@ -214,7 +216,7 @@ public class HomeController {
 	public String search(@RequestParam("text")String text, HttpSession session, Model model) {
 		List<Post> posts = pDao.getPostsTrangThai(text);
 		PagedListHolder<?> pages = new PagedListHolder<>(posts);
-		int pagesize = 3;
+		int pagesize = 9;
 		pages.setPageSize(pagesize);
 		pages.setPage(0);
 		int current =1;

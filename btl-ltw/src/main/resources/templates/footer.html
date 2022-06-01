@@ -12,36 +12,17 @@
 			<h2 class="mb-4 tm-post-title" style="font-size: 1.2rem;">MOST VIEWED</h2>
 
 			<ul class="pl-5 tm-category-list">
-				<li style="margin-top: 10px;">
-					<a href="#" class="tm-color-primary" style="display: flex;">
-						<img src="https://blogamthuc.tv/wp-content/uploads/2021/05/maxresdefault-3-125x83.jpg"
-							class="footer-img-view">
-						<div class="footer-view">
-							<span> Top 10 món thức ăn nhanh phổ biến nhất thế giới</span>
-							<span> 3.820 views</span>
-						</div>
-					</a>
-				</li>
-				<li style="margin-top: 10px;">
-					<a href="#" class="tm-color-primary" style="display: flex;">
-						<img src="https://blogamthuc.tv/wp-content/uploads/2021/05/maxresdefault-3-125x83.jpg"
-							class="footer-img-view">
-						<div class="footer-view">
-							<span> Top 10 món thức ăn nhanh phổ biến nhất thế giới</span>
-							<span> 3.820 views</span>
-						</div>
-					</a>
-				</li>
-				<li style="margin-top: 10px;">
-					<a href="#" class="tm-color-primary" style="display: flex;">
-						<img src="https://blogamthuc.tv/wp-content/uploads/2021/05/maxresdefault-3-125x83.jpg"
-							class="footer-img-view">
-						<div class="footer-view">
-							<span> Top 10 món thức ăn nhanh phổ biến nhất thế giới</span>
-							<span> 3.820 views</span>
-						</div>
-					</a>
-				</li>
+				<th:block th:each="postF : ${session.postsF}">
+					<li style="margin-top: 10px;">
+						<a th:href="@{|/post/${postF.id}|}" class="tm-color-primary" style="display: flex;">
+							<img th:src="${postF.anh}" class="footer-img-view">
+							<div class="footer-view">
+								<span th:text="${postF.tieude}">  Top 10 món thức ăn nhanh phổ biến nhất thế giới</span >
+								<span th:text="|${postF.luotxem} views|">  3.820 views</span >
+							</div>
+						</a>
+					</li>
+				</th:block>
 			</ul>
 		</div>
 		<div class="col-4">

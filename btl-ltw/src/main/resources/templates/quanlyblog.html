@@ -37,7 +37,20 @@
 									<div class="panel panel-default">
 										<div class="panel-heading "
 											style="display: flex; justify-content: space-between;">
-											<span style="color: var(--text-color);">Danh sách Post</span>
+											<!--<span style="color: var(--text-color);">Danh sách Post</span>-->
+											<th:block th:if="${session.text== null || session.text.isEmpty()}">
+												<h1 id="search" class="cart-heading"
+													style="border-bottom: none; width:auto;padding-bottom: 10px;">Danh
+													sách Post
+												</h1>
+											</th:block>
+											<th:block th:unless="${session.text== null || session.text.isEmpty()}">
+												<h1 id="search" class="cart-heading"
+													style="border-bottom: none; width:auto;padding-bottom: 10px;"> Kết
+													quả tìm kiếm Post '
+													<th:block th:text="${session.text}"></th:block>'
+												</h1>
+											</th:block>
 											<div style="display: flex;">
 												<form th:action="@{/blog/manager/all}" method="get">
 													<button style="width: 100px; font-size: 1rem;margin-right: 10px;"
@@ -70,8 +83,10 @@
 																	<div class="cart-product-price-nth ">
 																		<span class="cart-product-price-nth-link "
 																			style="width: 25%; ">Tài khoản:</span>
-																		<a th:href="@{|/account/detail/${post.user.id}|}" class="cart-product-price"
-																			th:text="${post.user.username}" style="color:var(--text-color);">
+																		<a th:href="@{|/account/detail/${post.user.id}|}"
+																			class="cart-product-price"
+																			th:text="${post.user.username}"
+																			style="color:var(--text-color);">
 																		</a>
 																	</div>
 																</td>
@@ -133,7 +148,8 @@
 														<tr>
 															<td colspan="6 "
 																style="text-align: end; border-bottom: 2px solid var(--border-color); ">
-																<ul class="pag-list " style="justify-content: center; margin-top: 15px;">
+																<ul class="pag-list "
+																	style="justify-content: center; margin-top: 15px;">
 
 
 																	<li class="pag-list-item ">

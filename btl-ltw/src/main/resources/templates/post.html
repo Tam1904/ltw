@@ -25,9 +25,6 @@
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 						allowfullscreen style="transform: scale(1.0);" class="tm-mb-40"></iframe>
 
-
-
-
 					<div class="row tm-row">
 						<div class="col-lg-14 tm-post-col" style="width:100%">
 							<div>
@@ -38,10 +35,13 @@
 										<a style="color:#999" th:href="@{|/account/detail/${post.user.id}|}"
 											th:text="${post.user.username}"> </a>
 									</p>
-									<p th:text="${post.noidung}">
+									<!--<p th:text="${post.noidung}">
 
-									</p>
-
+									</p>-->
+									<th:block th:each="noidung : ${post.noidungs}">
+										<p th:text="${noidung}">
+										</p>
+									</th:block>
 									<span id="idpost" style="display:none" th:text="${post.id}">
 									</span>
 								</div>
@@ -68,7 +68,7 @@
 												<img th:src="${comment.user.anh}" alt="Image"
 													class="rounded-circle img-thumbnail"
 													style="width: 70px ; height:70px; display:block ; margin-right: 5px;">
-												<figcaption class="tm-color-primary text-center"
+												<figcaption class="tm-color-primary text-center" style="text-align: left!important;"
 													th:text="${comment.user.username}"></figcaption>
 											</figure>
 											<div id="parent" style="width:100%">
@@ -107,7 +107,7 @@
 														<img th:src="${commentreply.user.anh}" alt="Image"
 															class="rounded-circle img-thumbnail"
 															style="width: 70px ; height:70px; display:block ; margin-right: 5px;">
-														<figcaption class="tm-color-primary text-center"
+														<figcaption class="tm-color-primary text-center" style="text-align: left!important;"
 															th:text="${commentreply.user.username}">
 														</figcaption>
 													</figure>
@@ -160,7 +160,7 @@
 							<th:block th:each="postItem : ${posts}">
 								<a th:href="@{|/post/${postItem.id}|}" class="d-block tm-mb-40">
 									<figure>
-										<img th:src="${postItem.anh}" alt="Image" class="mb-3 img-fluid" style="display: block; height:188px">
+										<img th:src="${postItem.anh}" alt="Image" class="mb-3 img-fluid" style="display: block; height:188px;width: 100%;">
 										<figcaption class="tm-color-primary" th:text="${postItem.tieude}">
 										</figcaption>
 									</figure>

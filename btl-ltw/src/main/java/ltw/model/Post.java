@@ -29,7 +29,7 @@ public class Post {
 	
 	
 	public List<String> getNoidungs(){
-		StringTokenizer tk = new StringTokenizer(this.noidung,"[.–]");
+		StringTokenizer tk = new StringTokenizer(this.noidung,"@");
 		List<String> list = new ArrayList<>();
 		while(tk.hasMoreTokens()) {
 			String s = tk.nextToken();
